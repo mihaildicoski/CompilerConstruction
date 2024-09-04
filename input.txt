@@ -1,0 +1,14 @@
+main num V_x, text V_y, num V_z begin 
+    V_x < input 
+    if eq(V_x, 10) then 
+        print V_x 
+    else 
+        print "Value" 
+    end
+    F_addthree(V_x, V_y, V_z)
+end 
+
+void F_addthree(num V_a, num V_b, num V_c) begin 
+    V_c = add(V_a, 3)
+    print V_c 
+end

@@ -1,6 +1,5 @@
 
-import java.util.*; 
-import java.util.List; 
+import java.util.*;
 import java.util.regex.*; 
 
 
@@ -52,9 +51,9 @@ public class Lexer {
             "F_[a-z]([a-z]|[0-9])*", // Identifiers (Function names)
             "[0-9]+(\\.[0-9]+)?|-[0-9]+(\\.[0-9]+)?", // Numeric literals (Token-Class N)
             "\"[A-Z][a-z]{0,7}\"", // Text literals (Token-Class T)
-            "\\+|\\-|\\*|\\/|=|<|>|!", // Operators
+            "[+\\-*/=<>!]", // Operators
             "[.,;(){}]", // Punctuation
-            "main|num|text|begin|end|skip|halt|print|input|if|then|else|void|not|sqrt|or|and|eq|grt|add|sub|mul|div", // Keywords
+            "\\b(main|num|text|begin|end|skip|halt|print|input|if|then|else|void|not|sqrt|or|and|eq|grt|add|sub|mul|div)\\b", // Keywords
         }; 
 
         TokenType[] tokenTypes = {
