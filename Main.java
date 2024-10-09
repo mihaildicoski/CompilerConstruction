@@ -1,5 +1,6 @@
 import java.util.List;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 
@@ -27,6 +28,7 @@ public class Main {
             for (Token token : tokens) {
                 System.out.println(token);
             }
+            writeToXML(tokens, "lexed.txt"); 
 
         } catch (IOException e) {
             System.out.println("Error reading the input file: " + e.getMessage());
@@ -34,4 +36,27 @@ public class Main {
             System.out.println("There was an error: " + e.getMessage());
         }
     }
+
+
+
+    public static void writeToXML(List<Token> tokens, String filename){
+
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write("<TOKENSTREAM>\n");
+            for (Token token : tokens) {
+                writer.write("  <TOK>\n");
+                writer.write("    <ID>" + token.getId() + "</ID>\n");
+                writer.write("    <CLASS>" + token.getType() + "</CLASS>\n");
+                writer.write("    <WORD>" + token.getValue() + "</WORD>\n");
+                writer.write("  </TOK>\n");
+            }
+            writer.write("</TOKENSTREAM>\n");
+            System.out.println("Lexed tokens were successfully written to " + filename);
+        } catch (IOException e) {
+            System.out.println("Error writing the lexed tokens to file: " + e.getMessage());
+        }
+
+    }
+
+
 }

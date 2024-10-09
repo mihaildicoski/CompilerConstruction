@@ -8,6 +8,7 @@ public class Lexer {
 
     private String input; 
     private int currPosition; 
+    
 
     public Lexer(String input){
         this.input = input; 
