@@ -19,7 +19,8 @@ public class Parser {
     private Stack<Integer> stateStack; 
     private Stack<String> symbolStack; 
     private Map<String, Integer> tokenToColumnIndexMap;
-    private Stack<Node> astStack = new Stack<>(); 
+    private Stack<Node> astStack = new Stack<>();
+    private int nodeCounter = 0;  
 
     public Parser(List<Token> tokens, String parseTableFilePath) throws IOException{
         this.tokens = tokens; 
@@ -101,7 +102,7 @@ public class Parser {
         }
     }
 
-    public void parse(){
+    public Node parse(){
         int tokenIndex = 0; 
         while (tokenIndex < tokens.size()) {   
 
@@ -132,7 +133,7 @@ public class Parser {
                 System.out.println("Reached accept state.");
                 Node root = astStack.peek(); 
                 printAST(root, "");
-                return; 
+                return root; 
             }
             else if(isGoAction(action)){
                 //go 
@@ -143,10 +144,11 @@ public class Parser {
             }
             else{
                 System.out.println("Syntax error. Curr token: "+ currToken);
-                return; 
+                return null; 
             }
 
         }
+        return null; 
     }
 
     private boolean isGoAction(String action) {

@@ -31,7 +31,15 @@ public class Main {
             writeToXML(tokens, "lexed.txt"); 
 
             Parser parser = new Parser(tokens, "slrparse2.csv"); 
-            parser.parse();
+            Node root = parser.parse();
+
+            ASTConverter astToXml = new ASTConverter();
+            String xmlOutput = astToXml.generateSyntaxTreeXml(root);
+            try (FileWriter writer = new FileWriter("AST.txt")) {
+                writer.write(xmlOutput);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } catch (IOException e) {
             System.out.println("Error reading the input file: " + e.getMessage());
