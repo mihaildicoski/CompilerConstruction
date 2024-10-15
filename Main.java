@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             String code = ""; 
-            String filepath = "input.txt"; 
+            String filepath = "input3.txt"; 
             StringBuilder sb = new StringBuilder(); 
 
             try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
@@ -29,6 +29,9 @@ public class Main {
                 System.out.println(token);
             }
             writeToXML(tokens, "lexed.txt"); 
+
+            Parser parser = new Parser(tokens, "slrparse2.csv"); 
+            parser.parse();
 
         } catch (IOException e) {
             System.out.println("Error reading the input file: " + e.getMessage());

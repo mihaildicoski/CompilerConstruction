@@ -1,5 +1,5 @@
 State,ACTION,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,GOTO,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,main,?,",",num,text,varname,begin,end,;,skip,halt,print,return,numliteral,textliteral,"<input< th="""" style=""font-family: courier;""></input<>",=,(,),if,then,else,not,sqrt,or,and,eq,grt,add,sub,mul,div,functionidentifier,void,{,},$,S,PROG,GLOBVARS,VTYP,VNAME,ALGO,INSTRUC,COMMAND,ATOMIC,CONST,ASSIGN,CALL,BRANCH,TERM,OP,ARG,COND,SIMPLE,COMPOSIT,UNOP,BINOP,FNAME,FUNCTIONS,DECL,HEADER,FTYP,BODY,PROLOG,EPILOG,LOCVARS,SUBFUNCS
+,main,?,",",num,text,VARIABLE_IDENTIFIER,begin,end,;,skip,halt,print,return,NUMERIC_LITERAL,TEXT_LITERAL,"<input< th="""" style=""font-family: courier;""></input<>",=,(,),if,then,else,not,sqrt,or,and,eq,grt,add,sub,mul,div,FUNCTION_IDENTIFIER,void,{,},$,S,PROG,GLOBVARS,VTYP,VNAME,ALGO,INSTRUC,COMMAND,ATOMIC,CONST,ASSIGN,CALL,BRANCH,TERM,OP,ARG,COND,SIMPLE,COMPOSIT,UNOP,BINOP,FNAME,FUNCTIONS,DECL,HEADER,FTYP,BODY,PROLOG,EPILOG,LOCVARS,SUBFUNCS
 0,s2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,acc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 2,,s4,,s6,s7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,5,,,,,,,,,,,,,,,,,,,,,,,,,,,

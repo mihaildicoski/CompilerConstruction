@@ -5,13 +5,15 @@ public enum TokenType{
     GRT, ADD, SUB, MUL, DIV, 
 
     //general categories
-    KEYWORD, 
-    VARIABLE_IDENTIFIER, 
-    FUNCTION_IDENTIFIER, 
-    NUMERIC_LITERAL, 
-    TEXT_LITERAL, 
-    OPERATOR, 
-    PUNCTUATION,
+    KEYWORD, //check value
+    VARIABLE_IDENTIFIER, //keep 
+    FUNCTION_IDENTIFIER, //keep
+    NUMERIC_LITERAL, //keep 
+    TEXT_LITERAL, //keep
+    OPERATOR, //check value
+    PUNCTUATION, //check value
+
+    //keyword, operator, punctuation
 
 
     
