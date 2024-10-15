@@ -11,11 +11,56 @@
   </TOK>
   <TOK>
     <ID>3</ID>
+    <CLASS>VARIABLE_IDENTIFIER</CLASS>
+    <WORD>V_varname</WORD>
+  </TOK>
+  <TOK>
+    <ID>4</ID>
+    <CLASS>OPERATOR</CLASS>
+    <WORD>=</WORD>
+  </TOK>
+  <TOK>
+    <ID>5</ID>
+    <CLASS>NUMERIC_LITERAL</CLASS>
+    <WORD>3</WORD>
+  </TOK>
+  <TOK>
+    <ID>6</ID>
+    <CLASS>PUNCTUATION</CLASS>
+    <WORD>;</WORD>
+  </TOK>
+  <TOK>
+    <ID>7</ID>
+    <CLASS>KEYWORD</CLASS>
+    <WORD>print</WORD>
+  </TOK>
+  <TOK>
+    <ID>8</ID>
+    <CLASS>VARIABLE_IDENTIFIER</CLASS>
+    <WORD>V_varname</WORD>
+  </TOK>
+  <TOK>
+    <ID>9</ID>
+    <CLASS>PUNCTUATION</CLASS>
+    <WORD>;</WORD>
+  </TOK>
+  <TOK>
+    <ID>10</ID>
+    <CLASS>KEYWORD</CLASS>
+    <WORD>halt</WORD>
+  </TOK>
+  <TOK>
+    <ID>11</ID>
+    <CLASS>PUNCTUATION</CLASS>
+    <WORD>;</WORD>
+  </TOK>
+  <TOK>
+    <ID>12</ID>
     <CLASS>KEYWORD</CLASS>
     <WORD>end</WORD>
   </TOK>
   <TOK>
-    <ID>4</ID>
+    <ID>13</ID>
     <CLASS>EOF</CLASS>
     <WORD>$</WORD>
   </TOK>
