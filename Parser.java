@@ -179,6 +179,9 @@ public class Parser {
         else if(token.getType().toString().equals("PUNCTUATION")){
             useValue = true; 
         }
+        else if(token.getType().toString().equals("EOF")){
+            useValue = true; 
+        }
         
         if(useValue){
             return tokenToColumnIndexMap.getOrDefault(token.getValue(), -1); 

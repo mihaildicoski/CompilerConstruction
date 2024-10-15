@@ -12,6 +12,7 @@ public enum TokenType{
     TEXT_LITERAL, //keep
     OPERATOR, //check value
     PUNCTUATION, //check value
+    EOF, // check value
 
     //keyword, operator, punctuation
 

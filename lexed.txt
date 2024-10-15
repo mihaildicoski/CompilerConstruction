@@ -14,4 +14,9 @@
     <CLASS>KEYWORD</CLASS>
     <WORD>end</WORD>
   </TOK>
+  <TOK>
+    <ID>4</ID>
+    <CLASS>EOF</CLASS>
+    <WORD>$</WORD>
+  </TOK>
 </TOKENSTREAM>

@@ -30,6 +30,8 @@ public class Lexer {
             }
 
         }
+        Token eofToken = new Token(TokenType.EOF, "$"); 
+        tokens.add(eofToken); 
         return tokens; 
     }
 
