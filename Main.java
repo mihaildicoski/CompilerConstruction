@@ -34,7 +34,7 @@ public class Main {
             Node root = parser.parse();
             ASTConverter astToXml = new ASTConverter();
             String xmlOutput = astToXml.generateSyntaxTreeXml(root);
-            try (FileWriter writer = new FileWriter("AST.txt")) {
+            try (FileWriter writer = new FileWriter("AST2.txt")) {
                 writer.write(xmlOutput);
             } catch (IOException e) {
                 e.printStackTrace();
