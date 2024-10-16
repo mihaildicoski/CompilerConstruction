@@ -34,13 +34,20 @@ public class Main {
             Node root = parser.parse();
             ASTConverter astToXml = new ASTConverter();
             String xmlOutput = astToXml.generateSyntaxTreeXml(root);
-            try (FileWriter writer = new FileWriter("AST2.txt")) {
+            try (FileWriter writer = new FileWriter("AST.txt")) {
                 writer.write(xmlOutput);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             ScopeAnalyser scope = new ScopeAnalyser(root); 
+            Node updatedRoot = scope.analyse(root);
+            String xmlOutput2 = astToXml.generateSyntaxTreeXml(updatedRoot);
+            try (FileWriter writer = new FileWriter("updatedAST.txt")) {
+                writer.write(xmlOutput2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
         } catch (IOException e) {

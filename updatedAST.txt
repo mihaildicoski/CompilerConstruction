@@ -81,7 +81,7 @@
                 <PARENT>4</PARENT>
                 <UNID>3</UNID>
                 <TERMINAL>
-                  <TOKEN>V_varname</TOKEN>
+                  <TOKEN>v0</TOKEN>
                 </TERMINAL>
               </LEAF>
             <LEAF>
@@ -175,7 +175,7 @@
                   <PARENT>15</PARENT>
                   <UNID>14</UNID>
                   <TERMINAL>
-                    <TOKEN>V_varname</TOKEN>
+                    <TOKEN>v1</TOKEN>
                   </TERMINAL>
                 </LEAF>
           <LEAF>

@@ -8,6 +8,7 @@ public class Node {
     private List<Node> children; 
     private int id;
     private int parentId; 
+    private Node parent; 
 
 
     public Node(String type, int id){
@@ -25,7 +26,8 @@ public class Node {
 
     public void addChild(Node n){
         n.setParentId(this.id); 
-        this.children.add(n); 
+        this.children.add(n);
+        n.setParent(this);  
     }
 
     public void setId(int id){
@@ -44,6 +46,26 @@ public class Node {
         return this.parentId; 
     }
 
+
+    public Node getNode(int id, Node node){
+        if(node.getId() == id){
+            return node; 
+        }
+        for(Node child: node.getChildren()){
+            getNode(id, child); 
+        }
+        return null; 
+        
+    }
+
+    public void setParent(Node parent){
+        this.parent = parent; 
+    }
+
+    public Node getParent(){
+        return this.parent; 
+    }
+
     public String getType(){
         return this.type; 
     }
@@ -51,6 +73,11 @@ public class Node {
     public String getValue(){
         return this.value; 
     }
+
+    public void setValue(String value){
+        this.value = value; 
+    }
+
 
     public List<Node> getChildren(){
         return this.children; 
