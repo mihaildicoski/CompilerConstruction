@@ -19,8 +19,8 @@ public class Parser {
     private Stack<Integer> stateStack; 
     private Stack<String> symbolStack; 
     private Map<String, Integer> tokenToColumnIndexMap;
-    private Stack<Node> astStack = new Stack<>();
-    private int nodeCounter = 0;  
+    private Stack<Node> astStack = new Stack<>(); 
+    private int nodeId = 0;  
 
     public Parser(List<Token> tokens, String parseTableFilePath) throws IOException{
         this.tokens = tokens; 
@@ -104,6 +104,7 @@ public class Parser {
 
     public Node parse(){
         int tokenIndex = 0; 
+        
         while (tokenIndex < tokens.size()) {   
 
             Token currToken = tokens.get(tokenIndex); 
@@ -116,7 +117,7 @@ public class Parser {
                 stateStack.push(nextState); 
                 //this can also be getType() for higher level representation
                 symbolStack.push(currToken.getType().toString());
-                Node tempy = new Node(currToken.getType().toString(), currToken.getValue().toString()); 
+                Node tempy = new Node(currToken.getType().toString(), currToken.getValue().toString(), nodeId++); 
                 astStack.push(tempy); 
                 tokenIndex++; 
                 // System.out.println("shift"); 
@@ -212,7 +213,7 @@ public class Parser {
             case 0:
                 //S-> PROG
                 symbolStack.pop();
-                parentNode = new Node("S");
+                parentNode = new Node("S", nodeId++);
                 parentNode.addChild(astStack.pop());  
                 //Node childNode = new Node("childnode", symbolStack.pop()); 
                 //Node parentNode = new Node("S"); 
@@ -225,7 +226,7 @@ public class Parser {
                 break;
 
             case 1:
-                parentNode = new Node("PROG"); 
+                parentNode = new Node("PROG", nodeId++); 
                 for(int i  = 0; i<4; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -241,14 +242,14 @@ public class Parser {
                 break;
 
             case 2:
-                parentNode = new Node("GLOBVARS"); 
+                parentNode = new Node("GLOBVARS", nodeId++); 
                 astStack.push(parentNode); 
                 symbolStack.push("GLOBVARS");
                 goTo("GLOBVARS");
                 break;
 
             case 3:
-                parentNode = new Node("GLOBVARS"); 
+                parentNode = new Node("GLOBVARS", nodeId++); 
                 for(int i  = 0; i<4; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -264,7 +265,7 @@ public class Parser {
                 break;
 
             case 4:
-                parentNode = new Node("VTYP"); 
+                parentNode = new Node("VTYP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -280,7 +281,7 @@ public class Parser {
                 break;
 
             case 5:
-                parentNode = new Node("VTYP"); 
+                parentNode = new Node("VTYP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -296,7 +297,7 @@ public class Parser {
                 break;
 
             case 6:
-                parentNode = new Node("VNAME"); 
+                parentNode = new Node("VNAME", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -312,7 +313,7 @@ public class Parser {
                 break;
 
             case 7:
-                parentNode = new Node("ALGO"); 
+                parentNode = new Node("ALGO", nodeId++); 
                 for(int i  = 0; i<3; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -328,14 +329,14 @@ public class Parser {
                 break;
 
             case 8:
-                parentNode = new Node("INSTRUC"); 
+                parentNode = new Node("INSTRUC", nodeId++); 
                 astStack.push(parentNode); 
                 symbolStack.push("INSTRUC");
                 goTo("INSTRUC");
                 break;
 
             case 9:
-                parentNode = new Node("INSTRUC"); 
+                parentNode = new Node("INSTRUC", nodeId++); 
                 for(int i  = 0; i<3; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -351,7 +352,7 @@ public class Parser {
                 break;
 
             case 10:
-                parentNode = new Node("COMMAND"); 
+                parentNode = new Node("COMMAND", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -367,7 +368,7 @@ public class Parser {
                 break;
 
             case 11:
-                parentNode = new Node("COMMAND"); 
+                parentNode = new Node("COMMAND", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -383,7 +384,7 @@ public class Parser {
                 break;
 
             case 12:
-                parentNode = new Node("COMMAND"); 
+                parentNode = new Node("COMMAND", nodeId++); 
                 for(int i  = 0; i<2; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -399,7 +400,7 @@ public class Parser {
                 break;
 
             case 13:
-                parentNode = new Node("COMMAND");  
+                parentNode = new Node("COMMAND", nodeId++);  
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -415,7 +416,7 @@ public class Parser {
                 break;
 
             case 14:
-                parentNode = new Node("COMMAND"); 
+                parentNode = new Node("COMMAND", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -431,7 +432,7 @@ public class Parser {
                 break;
 
             case 15:
-                parentNode = new Node("COMMAND"); 
+                parentNode = new Node("COMMAND", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -447,7 +448,7 @@ public class Parser {
                 break;
 
             case 16:
-                parentNode = new Node("COMMAND"); 
+                parentNode = new Node("COMMAND", nodeId++); 
                 for(int i  = 0; i<2; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -463,7 +464,7 @@ public class Parser {
                 break;
 
             case 17:
-                parentNode = new Node("ATOMIC"); 
+                parentNode = new Node("ATOMIC", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -479,7 +480,7 @@ public class Parser {
                 break;
 
             case 18:
-                parentNode = new Node("ATOMIC"); 
+                parentNode = new Node("ATOMIC", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -495,7 +496,7 @@ public class Parser {
                 break;
 
             case 19:
-                parentNode = new Node("CONST"); 
+                parentNode = new Node("CONST", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -511,7 +512,7 @@ public class Parser {
                 break;
 
             case 20:
-                parentNode = new Node("CONST"); 
+                parentNode = new Node("CONST", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -527,7 +528,7 @@ public class Parser {
                 break;
 
             case 21:
-                parentNode = new Node("ASSIGN"); 
+                parentNode = new Node("ASSIGN", nodeId++); 
                 for(int i  = 0; i<3; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -543,7 +544,7 @@ public class Parser {
                 break;
 
             case 22:
-                parentNode = new Node("ASSIGN"); 
+                parentNode = new Node("ASSIGN", nodeId++); 
                 for(int i  = 0; i<3; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -559,7 +560,7 @@ public class Parser {
                 break;
 
             case 23:
-                parentNode = new Node("CALL"); 
+                parentNode = new Node("CALL", nodeId++); 
                 for(int i  = 0; i<8; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -575,7 +576,7 @@ public class Parser {
                 break;
 
             case 24:
-                parentNode = new Node("BRANCH"); 
+                parentNode = new Node("BRANCH", nodeId++); 
                 for(int i  = 0; i<6; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -591,7 +592,7 @@ public class Parser {
                 break;
 
             case 25:
-                parentNode = new Node("TERM"); 
+                parentNode = new Node("TERM", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -607,7 +608,7 @@ public class Parser {
                 break;
 
             case 26:
-                parentNode = new Node("TERM"); 
+                parentNode = new Node("TERM", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -623,7 +624,7 @@ public class Parser {
                 break;
 
             case 27:
-                parentNode = new Node("TERM"); 
+                parentNode = new Node("TERM", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -639,7 +640,7 @@ public class Parser {
                 break;
 
             case 28:
-                parentNode = new Node("OP"); 
+                parentNode = new Node("OP", nodeId++); 
                 for(int i  = 0; i<4; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -655,7 +656,7 @@ public class Parser {
                 break;
 
             case 29:
-                parentNode = new Node("OP"); 
+                parentNode = new Node("OP", nodeId++); 
                 for(int i  = 0; i<6; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -671,7 +672,7 @@ public class Parser {
                 break;
 
             case 30:
-                parentNode = new Node("ARG"); 
+                parentNode = new Node("ARG", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -687,7 +688,7 @@ public class Parser {
                 break;
 
             case 31:
-                parentNode = new Node("ARG"); 
+                parentNode = new Node("ARG", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -703,7 +704,7 @@ public class Parser {
                 break;
 
             case 32:
-                parentNode = new Node("COND"); 
+                parentNode = new Node("COND", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -719,7 +720,7 @@ public class Parser {
                 break;
 
             case 33:
-                parentNode = new Node("COND"); 
+                parentNode = new Node("COND", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -735,7 +736,7 @@ public class Parser {
                 break;
 
             case 34:
-                parentNode = new Node("SIMPLE"); 
+                parentNode = new Node("SIMPLE", nodeId++); 
                 for(int i  = 0; i<6; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -751,7 +752,7 @@ public class Parser {
                 break;
 
             case 35:
-                parentNode = new Node("COMPOSIT"); 
+                parentNode = new Node("COMPOSIT", nodeId++); 
                 for(int i  = 0; i<6; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -767,7 +768,7 @@ public class Parser {
                 break;
 
             case 36:
-                parentNode = new Node("COMPOSIT"); 
+                parentNode = new Node("COMPOSIT", nodeId++); 
                 for(int i  = 0; i<4; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -783,7 +784,7 @@ public class Parser {
                 break;
 
             case 37:
-                parentNode = new Node("UNOP"); 
+                parentNode = new Node("UNOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -799,7 +800,7 @@ public class Parser {
                 break;
 
             case 38:
-                parentNode = new Node("UNOP"); 
+                parentNode = new Node("UNOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -815,7 +816,7 @@ public class Parser {
                 break;
 
             case 39:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -831,7 +832,7 @@ public class Parser {
                 break;
 
             case 40:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -847,7 +848,7 @@ public class Parser {
                 break;
 
             case 41:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -863,7 +864,7 @@ public class Parser {
                 break;
 
             case 42:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -879,7 +880,7 @@ public class Parser {
                 break;
 
             case 43:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -895,7 +896,7 @@ public class Parser {
                 break;
 
             case 44:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -911,7 +912,7 @@ public class Parser {
                 break;
 
             case 45:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -927,7 +928,7 @@ public class Parser {
                 break;
 
             case 46:
-                parentNode = new Node("BINOP"); 
+                parentNode = new Node("BINOP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -943,7 +944,7 @@ public class Parser {
                 break;
 
             case 47:
-                parentNode = new Node("FNAME"); 
+                parentNode = new Node("FNAME", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -959,14 +960,14 @@ public class Parser {
                 break;
 
             case 48:
-                parentNode = new Node("FUNCTIONS"); 
+                parentNode = new Node("FUNCTIONS", nodeId++); 
                 astStack.push(parentNode); 
                 symbolStack.push("FUNCTIONS");
                 goTo("FUNCTIONS");
                 break;
 
             case 49:
-                parentNode = new Node("FUNCTIONS"); 
+                parentNode = new Node("FUNCTIONS", nodeId++); 
                 for(int i  = 0; i<2; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -982,7 +983,7 @@ public class Parser {
                 break;
 
             case 50:
-                parentNode = new Node("DECL"); 
+                parentNode = new Node("DECL", nodeId++); 
                 for(int i  = 0; i<2; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -998,7 +999,7 @@ public class Parser {
                 break;
 
             case 51:
-                parentNode = new Node("HEADER"); 
+                parentNode = new Node("HEADER", nodeId++); 
                 for(int i  = 0; i<9; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -1014,7 +1015,7 @@ public class Parser {
                 break;
 
             case 52:
-                parentNode = new Node("FTYP"); 
+                parentNode = new Node("FTYP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -1030,7 +1031,7 @@ public class Parser {
                 break;
 
             case 53:
-                parentNode = new Node("FTYP"); 
+                parentNode = new Node("FTYP", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -1046,7 +1047,7 @@ public class Parser {
                 break;
 
             case 54:
-                parentNode = new Node("BODY"); 
+                parentNode = new Node("BODY", nodeId++); 
                 for(int i  = 0; i<6; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -1062,7 +1063,7 @@ public class Parser {
                 break;
 
             case 55:
-                parentNode = new Node("PROLOG"); 
+                parentNode = new Node("PROLOG", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop();
@@ -1078,7 +1079,7 @@ public class Parser {
                 break;
 
             case 56:
-                parentNode = new Node("EPILOG"); 
+                parentNode = new Node("EPILOG", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -1094,7 +1095,7 @@ public class Parser {
                 break;
 
             case 57:
-                parentNode = new Node("LOCALVARS"); 
+                parentNode = new Node("LOCALVARS", nodeId++); 
                 for(int i  = 0; i<9; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -1110,7 +1111,7 @@ public class Parser {
                 break;
 
             case 58:
-                parentNode = new Node("SUBFUNCS"); 
+                parentNode = new Node("SUBFUNCS", nodeId++); 
                 for(int i  = 0; i<1; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 

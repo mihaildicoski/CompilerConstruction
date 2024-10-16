@@ -32,7 +32,6 @@ public class Main {
 
             Parser parser = new Parser(tokens, "slrparse2.csv"); 
             Node root = parser.parse();
-
             ASTConverter astToXml = new ASTConverter();
             String xmlOutput = astToXml.generateSyntaxTreeXml(root);
             try (FileWriter writer = new FileWriter("AST.txt")) {
@@ -40,6 +39,9 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            ScopeAnalyser scope = new ScopeAnalyser(root); 
+
 
         } catch (IOException e) {
             System.out.println("Error reading the input file: " + e.getMessage());

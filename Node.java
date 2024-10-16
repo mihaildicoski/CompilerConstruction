@@ -10,15 +10,17 @@ public class Node {
     private int parentId; 
 
 
-    public Node(String type){
+    public Node(String type, int id){
         this.type = type; 
         this.children = new ArrayList<>(); 
+        this.id = id; 
     }
 
-    public Node(String type, String value){
+    public Node(String type, String value, int id){
         this.type = type; 
         this.value = value; 
         this.children = new ArrayList<>(); 
+        this.id = id; 
     }
 
     public void addChild(Node n){
@@ -56,7 +58,7 @@ public class Node {
 
     @Override
     public String toString(){
-        return "Node(type: "+type+ ", value: "+value+")"; 
+        return "Node(id: "+id+ "type: "+type+ ", value: "+value+")"; 
     }
 
     public String toXml() {
