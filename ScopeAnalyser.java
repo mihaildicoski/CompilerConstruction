@@ -40,11 +40,29 @@ public class ScopeAnalyser {
         //take precedence and overwrite all global scope vars - subsequently causing errors in the program. 
         if (isVarDecl(node)) {
             String originalName = node.getValue();  
-            String uniqueName = "v" + (vCounter++);
-            scopeStack.currentScope().addSymbol(originalName, uniqueName, "var", node.getId());
-            node.setValue(uniqueName);  //set to vx
+            SymbolInfo existing = scopeStack.currentScope().lookup(originalName); 
+            if(existing == null){
+                String uniqueName = "v" + (vCounter++);
+                scopeStack.currentScope().addSymbol(originalName, uniqueName, "var", node.getId());
+                node.setValue(uniqueName);  //set to vx
+            }
+            else{
+                //this just sets to already existing internal name 
+                node.setValue(existing.uniqueName);
+            }
 
-        } else if (isFuncDecl(node)) {
+        }
+        else if(isVarUsage(node)){
+            String originalName = node.getValue(); 
+            SymbolInfo existing = scopeStack.currentScope().lookup(originalName); 
+            if(existing!=null){
+                node.setValue(existing.uniqueName);
+            }
+            else{
+                //check global scope and see if it was declared there - if not throw error
+            }
+        }
+        else if (isFuncDecl(node)) {
             String originalName = node.getValue();  
             String uniqueName = "f" + (fCounter++);
             //obviously checks curr scope then adds - if same var name in same scope then it will just overwrite 
@@ -73,7 +91,7 @@ public class ScopeAnalyser {
         if(node.getType().equals("VARIABLE_IDENTIFIER")){
             Node parent = node.getParent();
             if(parent!=null){
-                return parent.getType().equals("VNAME") || parent.getType().equals("ASSIGN") || parent.getType().equals("LOCALVARS"); 
+                return parent.getType().equals("VNAME") && parent.getParent().getType().equals("ASSIGN"); 
             }
         }
         return false; 
@@ -100,6 +118,19 @@ public class ScopeAnalyser {
             }
         }
         return null;  
+    }
+
+
+    public Boolean isVarUsage(Node node){
+      
+        if(node.getType().equals("VARIABLE_IDENTIFIER")){
+            Node parent = node.getParent(); 
+            if(parent != null){
+                return !parent.getType().equals("ASSIGN"); 
+            }
+        }
+        return false; 
+
     }
 
 
