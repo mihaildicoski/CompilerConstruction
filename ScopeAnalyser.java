@@ -54,7 +54,7 @@ public class ScopeAnalyser {
         }
         else if(isVarUsage(node)){
             String originalName = node.getValue(); 
-            SymbolInfo existing = scopeStack.currentScope().lookup(originalName); 
+            SymbolInfo existing = scopeStack.currentScope().lookup(originalName);  
             if(existing!=null){
                 node.setValue(existing.uniqueName);
             }

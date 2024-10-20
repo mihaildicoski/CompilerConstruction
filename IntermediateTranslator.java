@@ -17,24 +17,26 @@ public class IntermediateTranslator {
     }
 
     private void traverse(Node node){
+        String type = node.getType(); 
         switch (node.getType()) {
             case "PROG":
                 for(Node child: node.getChildren()){
                     traverse(child);
                 }
                 break;
+            
+            case "ASSIGN": 
+                translateAssignment(node); 
+                break; 
 
-            case "FUNCTION_DECL": 
-                translateFunc(node);
+            case "INSTRUC":
+                translateInstruction(node);
                 break; 
                 
-            case "ASSIGN": 
-                translateAss(node);
-                break;  
-
-            case "RETURN":
-                translateRet(node);
-                break;  
+            
+                
+                
+           
 
              
                 
@@ -49,63 +51,59 @@ public class IntermediateTranslator {
     }
 
 
-    private void translateFunc(Node node){
-        String funcName = getFunctionName(node); 
-        String args = getArgs(node.getArgs());
-        miki.append("function ").append(funcName).append("(").append(args).append("){\n");  
-        for(Node body: node.getBody().getChildren()){
-            traverse(body); 
+    
+        
+    private void translateAssignment(Node node){
+
+        String lhs = node.getChildren().get(0).getChildren().get(0).getValue(); //will give the variable identifier value (v0 for example)
+        String rhs = node.getChildren().get(2).getChildren().get(0).getChildren().get(0).getChildren().get(0).getValue(); //will return the numeric/text literal value 
+
+        String alles = lhs + " := " + rhs + "\n"; 
+        miki.append(alles); 
+
+    }
+
+    private void translateInstruction(Node node){
+        //command can either have assign or {keyword, atomic} as children 
+        //base case for when instruc is epsilon 
+        if(node.getChildren()==null || node.getChildren().size() == 0){
+            return; 
         }
-        miki.append("}\n"); 
-    }
-
-    private void translateAss(Node node){
-        String id = getLHS(node).getValue(); 
-        String rhs = translateAtom(getRHS(node));
-        miki.append(id).append(" := ").append(rhs).append("\n");  
-    }
-
-    private void translateRet(Node node){
-        String retvalue = node.getReturnValue().getValue(); 
-        miki.append("RETURN ").append(retvalue).append("\n"); 
-    }
-
-    private String translateAtom(Node node){
-        if(node.getType().equals("VARIABLE_IDENTIFIER")){
-            return node.getValue(); 
+        Node comm = node.getChildren().get(0); 
+        if(comm.getChildren().size()>0 && comm.getChildren().get(0).getType().equals("ASSIGN")){
+            translateAssignment(comm.getChildren().get(0));
         }
-        else if(node.getType().equals("NUMERIC_LITERAL")){
-            return node.getValue(); 
-        }
-        return ""; 
+        else if(comm.getChildren().size()>0 && comm.getChildren().get(0).getType().equals("KEYWORD")){
 
+            Node keywordnode = comm.getChildren().get(0); 
+            switch (keywordnode.getValue()) {
+                case "print":
+                    Node atomNode = comm.getChildren().get(1); 
+                    String atomValue = atomNode.getChildren().get(0).getChildren().get(0).getValue(); 
+                    miki.append("PRINT ").append(atomValue).append("\n"); 
+                    break;
+
+                case "halt":
+                    miki.append("HALT\n"); 
+                    break;  
+            
+                default:
+                    break;
+            }
+
+        }   
+
+        //; is always going to be after COMMAND so it its getChildren().get(1)
+        Node secondInstruc = node.getChildren().get(2); 
+        translateInstruction(secondInstruc);
+            
+        
     }
+        
 
-    private String getArguments(List<Node> argNodes){
-        String temp = ""; 
-        for(Node argNode: argNodes){
-            temp += argNode.getValue() + ","; 
-        }
-        if(temp.length()>0){
-            temp = temp.substring(0, temp.length()-1); 
-        }
-        return temp; 
-    }
+    
 
-    private Node getLHS(Node parent){
-        return parent.getChildren().get(0); 
-    }
-
-    private Node getRHS(Node parent){
-        return parent.getChildren().get(1); 
-    }
-
-    private String getFunctionName(Node node){
-        if(node.getType().equals("FUNCTION_IDENTIFIER")){
-            return node.getValue(); 
-        }
-        return ""; 
-    }   
+    
 
 
     

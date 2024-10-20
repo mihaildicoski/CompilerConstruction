@@ -50,6 +50,13 @@ public class Main {
             }
 
 
+            //IR
+            IntermediateTranslator ir = new IntermediateTranslator(updatedRoot); 
+            String intermediateCode = ir.translate(); 
+            System.out.println("=================INTERMEDIATE CODE=================");
+            System.out.println(intermediateCode);
+
+
         } catch (IOException e) {
             System.out.println("Error reading the input file: " + e.getMessage());
         } catch (Exception e) {
