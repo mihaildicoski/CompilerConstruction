@@ -7,60 +7,95 @@
   <TOK>
     <ID>2</ID>
     <CLASS>KEYWORD</CLASS>
-    <WORD>begin</WORD>
+    <WORD>num</WORD>
   </TOK>
   <TOK>
     <ID>3</ID>
     <CLASS>VARIABLE_IDENTIFIER</CLASS>
-    <WORD>V_varname</WORD>
+    <WORD>V_abc</WORD>
   </TOK>
   <TOK>
     <ID>4</ID>
+    <CLASS>PUNCTUATION</CLASS>
+    <WORD>,</WORD>
+  </TOK>
+  <TOK>
+    <ID>5</ID>
+    <CLASS>KEYWORD</CLASS>
+    <WORD>num</WORD>
+  </TOK>
+  <TOK>
+    <ID>6</ID>
+    <CLASS>VARIABLE_IDENTIFIER</CLASS>
+    <WORD>V_a2</WORD>
+  </TOK>
+  <TOK>
+    <ID>7</ID>
+    <CLASS>PUNCTUATION</CLASS>
+    <WORD>,</WORD>
+  </TOK>
+  <TOK>
+    <ID>8</ID>
+    <CLASS>KEYWORD</CLASS>
+    <WORD>num</WORD>
+  </TOK>
+  <TOK>
+    <ID>9</ID>
+    <CLASS>VARIABLE_IDENTIFIER</CLASS>
+    <WORD>V_a3</WORD>
+  </TOK>
+  <TOK>
+    <ID>10</ID>
+    <CLASS>PUNCTUATION</CLASS>
+    <WORD>,</WORD>
+  </TOK>
+  <TOK>
+    <ID>11</ID>
+    <CLASS>KEYWORD</CLASS>
+    <WORD>begin</WORD>
+  </TOK>
+  <TOK>
+    <ID>12</ID>
+    <CLASS>VARIABLE_IDENTIFIER</CLASS>
+    <WORD>V_a2</WORD>
+  </TOK>
+  <TOK>
+    <ID>13</ID>
     <CLASS>OPERATOR</CLASS>
     <WORD>=</WORD>
   </TOK>
   <TOK>
-    <ID>5</ID>
+    <ID>14</ID>
     <CLASS>NUMERIC_LITERAL</CLASS>
-    <WORD>3</WORD>
+    <WORD>5</WORD>
   </TOK>
   <TOK>
-    <ID>6</ID>
+    <ID>15</ID>
     <CLASS>PUNCTUATION</CLASS>
     <WORD>;</WORD>
   </TOK>
   <TOK>
-    <ID>7</ID>
+    <ID>16</ID>
     <CLASS>KEYWORD</CLASS>
     <WORD>print</WORD>
   </TOK>
   <TOK>
-    <ID>8</ID>
+    <ID>17</ID>
     <CLASS>VARIABLE_IDENTIFIER</CLASS>
-    <WORD>V_varname</WORD>
+    <WORD>V_a2</WORD>
   </TOK>
   <TOK>
-    <ID>9</ID>
+    <ID>18</ID>
     <CLASS>PUNCTUATION</CLASS>
     <WORD>;</WORD>
   </TOK>
   <TOK>
-    <ID>10</ID>
-    <CLASS>KEYWORD</CLASS>
-    <WORD>halt</WORD>
-  </TOK>
-  <TOK>
-    <ID>11</ID>
-    <CLASS>PUNCTUATION</CLASS>
-    <WORD>;</WORD>
-  </TOK>
-  <TOK>
-    <ID>12</ID>
+    <ID>19</ID>
     <CLASS>KEYWORD</CLASS>
     <WORD>end</WORD>
   </TOK>
   <TOK>
-    <ID>13</ID>
+    <ID>20</ID>
     <CLASS>EOF</CLASS>
     <WORD>$</WORD>
   </TOK>

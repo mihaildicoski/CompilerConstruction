@@ -1,0 +1,1 @@
+main num V_abc , num V_a2 , num V_a3 , begin V_a2 = 5 ; print V_a2 ; end 

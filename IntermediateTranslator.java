@@ -32,6 +32,10 @@ public class IntermediateTranslator {
             case "INSTRUC":
                 translateInstruction(node);
                 break; 
+
+            case "GLOBVARS":
+                translateGlobvars(node);
+                break; 
                 
             
                 
@@ -98,6 +102,15 @@ public class IntermediateTranslator {
         translateInstruction(secondInstruc);
             
         
+    }
+
+    private void translateGlobvars(Node node){
+
+        //GLOBVARS -> VTYP VNAME , GLOBVARS 
+        //Node vtyp = node.getChildren().get(0); 
+        Node lhs = node.getChildren().get(1); 
+        
+
     }
         
 
