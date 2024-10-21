@@ -14,7 +14,7 @@ public class Main {
             try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
                 String line; 
                 while ((line = reader.readLine()) != null) {
-                    sb.append(line);  
+                    sb.append(line).append(" ");  
                 }
                 code = sb.toString(); 
             } 

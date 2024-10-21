@@ -1,0 +1,25 @@
+main
+text V_name,
+begin
+    skip; 
+    halt;
+    print V_name;
+    V_name = "Asa";
+    if 
+        not(eq(4,6)) 
+    then
+        begin 
+            V_p = add(eq(9,8),(not(eq(V_1,5))));
+        end
+    else 
+        begin
+            V_m = F_sub(1,2,3);
+        end;
+end
+num F_add(V_x, V_y, V_z) {
+    num V_a1, num V_a2, num V_a3,
+    begin
+        V_a2 = not(V_x);
+    end
+}
+end
