@@ -40,7 +40,7 @@ public class Main {
                 e.printStackTrace();
             }
 
-            ScopeAnalyser scope = new ScopeAnalyser(root); 
+            ScopeAnalyser2 scope = new ScopeAnalyser2(root); 
             Node updatedRoot = scope.analyse(root);
             String xmlOutput2 = astToXml.generateSyntaxTreeXml(updatedRoot);
             try (FileWriter writer = new FileWriter("updatedAST.txt")) {

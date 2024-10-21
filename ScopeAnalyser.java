@@ -59,18 +59,44 @@ public class ScopeAnalyser {
                 node.setValue(existing.uniqueName);
             }
             else{
+                //this gets entered when you have localvars with vtyp vname 
+                //does the usage of vars within a func need new vars or can we check prev scope? 
                 //check global scope and see if it was declared there - if not throw error
             }
         }
         else if (isFuncDecl(node)) {
-            String originalName = node.getValue();  
-            String uniqueName = "f" + (fCounter++);
-            //obviously checks curr scope then adds - if same var name in same scope then it will just overwrite 
-            scopeStack.currentScope().addSymbol(originalName, uniqueName, "function", node.getId());
-            node.setValue(uniqueName);  // set to fx
-            scopeStack.enterScope();  
-            traverse(getFunctionBody(node));
-            scopeStack.exitScope();  
+            // String originalName = node.getValue();  
+            // String uniqueName = "f" + (fCounter++);
+            // //obviously checks curr scope then adds - if same var name in same scope then it will just overwrite 
+            // scopeStack.currentScope().addSymbol(originalName, uniqueName, "function", node.getId());
+            // node.setValue(uniqueName);  // set to fx
+            // scopeStack.enterScope();  
+            // traverse(getFunctionBody(node));
+            // scopeStack.exitScope();
+
+            Node decl = node.getChildren().get(0);
+            Node header = decl.getChildren().get(0);  
+            String functionType = header.getChildren().get(0).getValue(); //can be num or void
+            String originalName = header.getChildren().get(1).getChildren().get(0).getValue();
+            SymbolInfo existing = scopeStack.currentScope().lookup(originalName); 
+            if(existing != null){
+                //throw error because you have a function in the same scope with the same name
+                System.out.println("Function with same name was declared twice...");
+                return; 
+            }
+            else{
+                String uniqueName = "f" + (fCounter++);
+                //this can be changed to the actual function_identifier node id - but it is set 
+                //as the FUNCTIONS id for now 
+                scopeStack.currentScope().addSymbol(originalName, uniqueName, functionType, node.getId());
+                header.getChildren().get(1).getChildren().get(0).setValue(uniqueName);
+                scopeStack.enterScope();
+                traverse(getFunctionBody(node.getChildren().get(0))); 
+                scopeStack.exitScope();
+            }
+            
+            //recursive call
+            traverse(node.getChildren().get(1)); 
 
         } else if (isBlock(node)) {
             scopeStack.enterScope();  
@@ -79,7 +105,29 @@ public class ScopeAnalyser {
             }
             scopeStack.exitScope();  
 
-        } else {
+        } 
+        else if(isGlobvars(node)){
+            //GLOBVARS -> VTYP VNAME , GLOBVARS
+            //GLOBVARS -> ''
+            //VTYP -> num
+            //VTYP -> text
+            String type = node.getChildren().get(0).getChildren().get(0).getValue(); 
+            String originalName = node.getChildren().get(1).getChildren().get(0).getValue(); 
+            SymbolInfo existing = scopeStack.currentScope().lookup(originalName); 
+            if(existing == null){
+                String uniqueName = "v" + (vCounter++);
+                scopeStack.currentScope().addSymbol(originalName, uniqueName, type, node.getId());
+                node.getChildren().get(1).getChildren().get(0).setValue(uniqueName);  
+            }
+            else{
+                //this just sets to already existing internal name 
+                node.getChildren().get(1).getChildren().get(0).setValue(existing.uniqueName);
+            }
+
+            traverse(node.getChildren().get(3)); 
+
+        }
+        else {
             for (Node child : node.getChildren()) {
                 traverse(child);
             }
@@ -98,10 +146,9 @@ public class ScopeAnalyser {
     }
     
     public Boolean isFuncDecl(Node node){
-        if(node.getType().equals("FUNCTION_IDENTIFIER")){
-            Node parent = node.getParent(); 
-            if(parent != null){
-                return parent.getType().equals("FNAME") || parent.getType().equals("HEADER"); 
+        if(node.getType().equals("FUNCTIONS")){
+            if(node.getChildren().size()>0){
+                return true; 
             }
         }
         return false; 
@@ -113,7 +160,7 @@ public class ScopeAnalyser {
 
     public Node getFunctionBody(Node node) {
         for (Node child : node.getChildren()) {
-            if (child.getType().equals("BODY") || child.getType().equals("ALGO")) {
+            if (child.getType().equals("BODY")) {
                 return child;
             }
         }
@@ -131,6 +178,15 @@ public class ScopeAnalyser {
         }
         return false; 
 
+    }
+
+    public Boolean isGlobvars(Node node){
+        if(node.getType().equals("GLOBVARS")){
+            if(node.getChildren().size()>0){ //if epsilon we don't want it to run the case statement
+                return true; 
+            }
+        }
+        return false; 
     }
 
 

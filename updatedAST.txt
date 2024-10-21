@@ -55,7 +55,7 @@
           <PARENT>4</PARENT>
           <UNID>3</UNID>
           <TERMINAL>
-            <TOKEN>V_abc</TOKEN>
+            <TOKEN>v0</TOKEN>
           </TERMINAL>
         </LEAF>
       <LEAF>
@@ -103,7 +103,7 @@
             <PARENT>9</PARENT>
             <UNID>8</UNID>
             <TERMINAL>
-              <TOKEN>V_a2</TOKEN>
+              <TOKEN>v1</TOKEN>
             </TERMINAL>
           </LEAF>
         <LEAF>
@@ -151,7 +151,7 @@
               <PARENT>14</PARENT>
               <UNID>13</UNID>
               <TERMINAL>
-                <TOKEN>V_a3</TOKEN>
+                <TOKEN>v2</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
@@ -225,7 +225,7 @@
                 <PARENT>22</PARENT>
                 <UNID>21</UNID>
                 <TERMINAL>
-                  <TOKEN>v0</TOKEN>
+                  <TOKEN>v1</TOKEN>
                 </TERMINAL>
               </LEAF>
             <LEAF>
@@ -319,7 +319,7 @@
                   <PARENT>33</PARENT>
                   <UNID>32</UNID>
                   <TERMINAL>
-                    <TOKEN>v0</TOKEN>
+                    <TOKEN>v1</TOKEN>
                   </TERMINAL>
                 </LEAF>
           <LEAF>

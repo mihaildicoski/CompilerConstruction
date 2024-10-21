@@ -108,7 +108,7 @@ public class IntermediateTranslator {
 
         //GLOBVARS -> VTYP VNAME , GLOBVARS 
         //Node vtyp = node.getChildren().get(0); 
-        Node lhs = node.getChildren().get(1); 
+        //Node lhs = node.getChildren().get(1); 
         
 
     }
