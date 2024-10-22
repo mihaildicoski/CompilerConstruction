@@ -267,7 +267,7 @@
   <TOK>
     <ID>54</ID>
     <CLASS>VARIABLE_IDENTIFIER</CLASS>
-    <WORD>V_novi2</WORD>
+    <WORD>V_novi289</WORD>
   </TOK>
   <TOK>
     <ID>55</ID>
@@ -276,21 +276,41 @@
   </TOK>
   <TOK>
     <ID>56</ID>
+    <CLASS>VARIABLE_IDENTIFIER</CLASS>
+    <WORD>V_novak</WORD>
+  </TOK>
+  <TOK>
+    <ID>57</ID>
+    <CLASS>OPERATOR</CLASS>
+    <WORD>=</WORD>
+  </TOK>
+  <TOK>
+    <ID>58</ID>
+    <CLASS>NUMERIC_LITERAL</CLASS>
+    <WORD>5</WORD>
+  </TOK>
+  <TOK>
+    <ID>59</ID>
+    <CLASS>PUNCTUATION</CLASS>
+    <WORD>;</WORD>
+  </TOK>
+  <TOK>
+    <ID>60</ID>
     <CLASS>KEYWORD</CLASS>
     <WORD>end</WORD>
   </TOK>
   <TOK>
-    <ID>57</ID>
+    <ID>61</ID>
     <CLASS>PUNCTUATION</CLASS>
     <WORD>}</WORD>
   </TOK>
   <TOK>
-    <ID>58</ID>
+    <ID>62</ID>
     <CLASS>KEYWORD</CLASS>
     <WORD>end</WORD>
   </TOK>
   <TOK>
-    <ID>59</ID>
+    <ID>63</ID>
     <CLASS>EOF</CLASS>
     <WORD>$</WORD>
   </TOK>

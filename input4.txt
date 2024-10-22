@@ -1,5 +1,5 @@
 main num V_abc , num V_a2 , num V_a3 , begin V_a2 = 5 ; print V_a2 ; F_miki(V_abc, V_a2, V_a3) ; end 
 void F_miki(V_miks, V_miks2, V_miks3) {
-    num V_novi1, num V_novi2, num V_novi3, begin V_novi2 = V_a3 ; print V_novi2 ; end
+    num V_novi1, num V_novi2, num V_novi3, begin V_novi2 = V_a3 ; print V_novi289 ; V_novak = 5; end
 }
 end  
