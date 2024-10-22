@@ -157,7 +157,7 @@
   <TOK>
     <ID>32</ID>
     <CLASS>VARIABLE_IDENTIFIER</CLASS>
-    <WORD>V_abc</WORD>
+    <WORD>V_miks</WORD>
   </TOK>
   <TOK>
     <ID>33</ID>
@@ -167,7 +167,7 @@
   <TOK>
     <ID>34</ID>
     <CLASS>VARIABLE_IDENTIFIER</CLASS>
-    <WORD>V_a2</WORD>
+    <WORD>V_miks2</WORD>
   </TOK>
   <TOK>
     <ID>35</ID>
@@ -177,7 +177,7 @@
   <TOK>
     <ID>36</ID>
     <CLASS>VARIABLE_IDENTIFIER</CLASS>
-    <WORD>V_a3</WORD>
+    <WORD>V_miks3</WORD>
   </TOK>
   <TOK>
     <ID>37</ID>

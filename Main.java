@@ -41,17 +41,19 @@ public class Main {
             }
 
             ScopeAnalyser2 scope = new ScopeAnalyser2(root); 
-            Node updatedRoot = scope.analyse(root);
-            String xmlOutput2 = astToXml.generateSyntaxTreeXml(updatedRoot);
-            try (FileWriter writer = new FileWriter("updatedAST.txt")) {
-                writer.write(xmlOutput2);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            SymbolTable tableRoot = scope.analyse(root);
+            scope.printTables(tableRoot); 
+            // String xmlOutput2 = astToXml.generateSyntaxTreeXml(updatedRoot);
+            // try (FileWriter writer = new FileWriter("updatedAST.txt")) {
+            //     writer.write(xmlOutput2);
+            // } catch (IOException e) {
+            //     e.printStackTrace();
+            // }
 
 
             //IR
-            IntermediateTranslator ir = new IntermediateTranslator(updatedRoot); 
+            //tree names need to get renamed directly (make another tree)
+            IntermediateTranslator ir = new IntermediateTranslator(root); 
             String intermediateCode = ir.translate(); 
             System.out.println("=================INTERMEDIATE CODE=================");
             System.out.println(intermediateCode);

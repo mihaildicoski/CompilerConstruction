@@ -578,7 +578,7 @@
               <PARENT>67</PARENT>
               <UNID>66</UNID>
               <TERMINAL>
-                <TOKEN>V_abc</TOKEN>
+                <TOKEN>V_miks</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
@@ -600,7 +600,7 @@
               <PARENT>70</PARENT>
               <UNID>69</UNID>
               <TERMINAL>
-                <TOKEN>V_a2</TOKEN>
+                <TOKEN>V_miks2</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
@@ -622,7 +622,7 @@
               <PARENT>73</PARENT>
               <UNID>72</UNID>
               <TERMINAL>
-                <TOKEN>V_a3</TOKEN>
+                <TOKEN>V_miks3</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>

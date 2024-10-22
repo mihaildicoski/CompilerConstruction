@@ -21,15 +21,23 @@ public class ScopeAnalyser2 {
         }
     }
 
-    public Node analyse(Node root){
+    public SymbolTable analyse(Node root){
         scopeStack.enterScope();
         scopeStack.currentScope().setName("main"); 
         traverse(root); 
+        SymbolTable rootTable = scopeStack.currentScope(); 
         scopeStack.exitScope();   
-        System.out.println("Func and var internal renaming......");
-        printAST(root, " ");
-        System.out.println(scopeStack.printSymbolTables());
-        return root; 
+        // System.out.println("Func and var internal renaming......");
+        // printAST(root, " ");
+        // System.out.println(scopeStack.printSymbolTables());
+        return rootTable; 
+    }
+
+    public void printTables(SymbolTable rootSymbolTable){
+        System.out.println(rootSymbolTable.toString());
+        for(SymbolTable child: rootSymbolTable.getChildren()){
+            printTables(child); 
+        }
     }
 
    
@@ -315,16 +323,26 @@ class ScopeStack{
 
 
     public void enterScope() {
-        scopeStack.push(new SymbolTable()); 
+        if(!scopeStack.isEmpty()){
+            SymbolTable parent = scopeStack.peek(); 
+            scopeStack.push(new SymbolTable()); 
+            scopeStack.peek().setParent(parent);
+        }
+        else{
+            scopeStack.push(new SymbolTable()); 
+        }
     }
     public void exitScope() {
         //print out the symbol Table
 
-        System.out.println("This is working.................");
+        // System.out.println("This is working.................");
         SymbolTable temp = scopeStack.peek();
         // System.out.println(temp.toString());  
         symbolTables.add(temp); 
         scopeStack.pop(); 
+        if(!scopeStack.isEmpty()){
+            scopeStack.peek().addChild(temp);
+        }
     }
     public SymbolTable currentScope() {
         return scopeStack.peek();
@@ -344,6 +362,8 @@ class ScopeStack{
 class SymbolTable{
     private Map<String, SymbolInfo> table = new HashMap<>();
     private String tableName; 
+    private List<SymbolTable> children = new ArrayList<>();
+    private SymbolTable parent; 
 
     public void addSymbol(String originalName, String uniqueName, String type, int nodeId) {
         table.put(originalName, new SymbolInfo(uniqueName, type, nodeId));
@@ -370,6 +390,23 @@ class SymbolTable{
 
     public void setName(String name){
         this.tableName = name; 
+    }
+
+    public void addChild(SymbolTable n){
+        n.setParent(this); 
+        this.children.add(n);
+    }
+
+    public void setParent(SymbolTable parent){
+        this.parent = parent; 
+    }
+
+    public SymbolTable getParent(){
+        return this.parent; 
+    }
+
+    public List<SymbolTable> getChildren(){
+        return this.children; 
     }
 }
 
