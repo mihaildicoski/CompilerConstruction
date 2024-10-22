@@ -22,7 +22,8 @@ public class ScopeAnalyser2 {
     }
 
     public Node analyse(Node root){
-        scopeStack.enterScope(); 
+        scopeStack.enterScope();
+        scopeStack.currentScope().setName("main"); 
         traverse(root); 
         scopeStack.exitScope();   
         System.out.println("Func and var internal renaming......");
@@ -73,6 +74,7 @@ public class ScopeAnalyser2 {
                         //traverse(header);
                         //make sure you have to 
                         scopeStack.enterScope();
+                        scopeStack.currentScope().setName(functionName);
                         //scope is entered on the decl
                         for(Node child: node.getChildren()){
                             traverse(child);
@@ -341,6 +343,7 @@ class ScopeStack{
 
 class SymbolTable{
     private Map<String, SymbolInfo> table = new HashMap<>();
+    private String tableName; 
 
     public void addSymbol(String originalName, String uniqueName, String type, int nodeId) {
         table.put(originalName, new SymbolInfo(uniqueName, type, nodeId));
@@ -352,7 +355,7 @@ class SymbolTable{
 
     @Override
     public String toString() {
-        StringBuilder temp = new StringBuilder("Symbol Table:\n");
+        StringBuilder temp = new StringBuilder("Symbol Table: " + tableName+ "\n");
         for (Map.Entry<String, SymbolInfo> entry : table.entrySet()) {
             String originalName = entry.getKey();
             SymbolInfo info = entry.getValue();
@@ -363,6 +366,10 @@ class SymbolTable{
                 .append("\n");  
         }
         return temp.toString();
+    }
+
+    public void setName(String name){
+        this.tableName = name; 
     }
 }
 
