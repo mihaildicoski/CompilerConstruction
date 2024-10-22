@@ -212,7 +212,7 @@
   <TOK>
     <ID>43</ID>
     <CLASS>VARIABLE_IDENTIFIER</CLASS>
-    <WORD>V_novi2</WORD>
+    <WORD>V_novi1</WORD>
   </TOK>
   <TOK>
     <ID>44</ID>

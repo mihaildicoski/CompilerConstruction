@@ -740,7 +740,7 @@
                 <PARENT>86</PARENT>
                 <UNID>85</UNID>
                 <TERMINAL>
-                  <TOKEN>V_novi2</TOKEN>
+                  <TOKEN>V_novi1</TOKEN>
                 </TERMINAL>
               </LEAF>
             <LEAF>

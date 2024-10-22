@@ -155,6 +155,12 @@ public class ScopeAnalyser2 {
                 String noviName2 = "v"+(vCounter++);
                 String noviName3 = "v"+(vCounter++);
 
+                //check if the three vnames are different
+                if(prvi.equals(drugi) || prvi.equals(treci) || drugi.equals(treci)){
+                    System.out.println("Localvars contain duplicate variable names. Invalid");
+                    return; 
+                }
+
                 scopeStack.currentScope().addSymbol(prvi, noviName1, type1, prvi_id);
                 scopeStack.currentScope().addSymbol(drugi, noviName2, type2, drugi_id);
                 scopeStack.currentScope().addSymbol(treci, noviName3, type3, treci_id);
