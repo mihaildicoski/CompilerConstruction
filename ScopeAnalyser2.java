@@ -24,19 +24,31 @@ public class ScopeAnalyser2 {
     public Node analyse(Node root){
         scopeStack.enterScope(); 
         traverse(root); 
-        scopeStack.exitScope();  
+        scopeStack.exitScope();   
         System.out.println("Func and var internal renaming......");
         printAST(root, " ");
+        System.out.println(scopeStack.printSymbolTables());
         return root; 
     }
+
+   
 
     private void traverse(Node node){
         String type = node.getType(); 
         switch(node.getType()){
             case "PROG": 
-                for(Node child: node.getChildren()){
-                    traverse(child);
-                }
+                //change this to order main GLOBVARS FUNCTIONS ALGO (last two swap)
+                // for(Node child: node.getChildren()){
+                //     traverse(child);
+                // }
+                Node mainNode = node.getChildren().get(0);
+                Node globvars = node.getChildren().get(1); 
+                Node algo = node.getChildren().get(2);
+                Node functions = node.getChildren().get(3);
+                traverse(mainNode);
+                traverse(globvars);
+                traverse(functions);
+                traverse(algo);  
                 break; 
 
             case "FUNCTIONS":
@@ -58,8 +70,10 @@ public class ScopeAnalyser2 {
                         String newName = "f" + (fCounter++); 
                         scopeStack.currentScope().addSymbol(functionName, newName, functionType, functionId);
                         //maybe traverse header before you enter a new scope
-                        
+                        //traverse(header);
+                        //make sure you have to 
                         scopeStack.enterScope();
+                        //scope is entered on the decl
                         for(Node child: node.getChildren()){
                             traverse(child);
                         }
@@ -72,6 +86,7 @@ public class ScopeAnalyser2 {
             case "HEADER": 
                 //possibly collect all vnames and then enter scope then add 
                 //you will exit out of the scope onc children are traversed
+                String functionName = node.getChildren().get(1).getChildren().get(0).getValue();
                 String vname1 = node.getChildren().get(3).getChildren().get(0).getValue();
                 int id1 = node.getChildren().get(3).getChildren().get(0).getId();
                 String vname2 = node.getChildren().get(5).getChildren().get(0).getValue();
@@ -81,10 +96,33 @@ public class ScopeAnalyser2 {
                 String newName1 = "v"+(vCounter++);
                 String newName2 = "v"+(vCounter++);
                 String newName3 = "v"+(vCounter++);
-
+                // SymbolInfo existing = scopeStack.currentScope().lookup(vname1); 
+                // SymbolInfo existing2 = scopeStack.currentScope().lookup(vname2); 
+                // SymbolInfo existing3 = scopeStack.currentScope().lookup(vname3); 
                 scopeStack.currentScope().addSymbol(vname1, newName1, "num", id1);
                 scopeStack.currentScope().addSymbol(vname2, newName2, "num", id2);
                 scopeStack.currentScope().addSymbol(vname3, newName3, "num", id3);
+
+
+                //this is for when you call a function - check the incoming params in the symbol table
+                // if(existing!=null && existing2 !=null && existing3 !=null){
+                //     //the passed in params exist in the scope and this is legal 
+                //     String name1 = existing.uniqueName; 
+                //     String name2 = existing2.uniqueName; 
+                //     String name3 = existing3.uniqueName; 
+                //     //scopeStack.enterScope();
+
+                //     scopeStack.currentScope().addSymbol(vname1, name1, "num", id1);
+                //     scopeStack.currentScope().addSymbol(vname2, name2, "num", id2);
+                //     scopeStack.currentScope().addSymbol(vname3, name3, "num", id3);
+                // }
+                // else{
+                //     //the incoming params are not delcared in the parent scope 
+                //     System.out.println("Incoming parameters for function " + functionName + " are not declared beforehand. ");
+                //     return; 
+                // }
+
+               
 
                 break; 
             
@@ -118,9 +156,9 @@ public class ScopeAnalyser2 {
             case "VNAME": 
                 //make sure to add to symbol table 
                 String origName = node.getChildren().get(0).getValue(); 
-                SymbolInfo existing = scopeStack.currentScope().lookup(origName);
-                if(existing != null){
-                    node.getChildren().get(0).setValue(existing.uniqueName);
+                SymbolInfo existingvname = scopeStack.currentScope().lookup(origName);
+                if(existingvname != null){
+                    node.getChildren().get(0).setValue(existingvname.uniqueName);
                 } 
                 else{
                     //only exit scope if you are not in global 
@@ -160,6 +198,72 @@ public class ScopeAnalyser2 {
                 }
                 break; 
 
+            case "CALL": 
+                Node fname = node.getChildren().get(0);
+                String funcName = fname.getChildren().get(0).getValue();
+                SymbolInfo exists = scopeStack.currentScope().lookup(funcName); 
+                if(exists != null){
+                    //function call is valid
+                    //check that all vars that are passed in are withing curr scope then if valid then you can create a new scope
+                    Node atom1 = node.getChildren().get(2);
+                    Node atom2 = node.getChildren().get(4);
+                    Node atom3 = node.getChildren().get(6);
+                    String atomType1 = atom1.getChildren().get(0).getType(); 
+                    String atomType2 = atom2.getChildren().get(0).getType(); 
+                    String atomType3 = atom3.getChildren().get(0).getType(); 
+                    if(atomType1.equals("VNAME")){
+                        String atomName1 = atom1.getChildren().get(0).getChildren().get(0).getValue();
+                        SymbolInfo existing = scopeStack.currentScope().lookup(atomName1); 
+                        if(existing!=null){
+                            //valid passed in param because exists already 
+                        }
+                        else{
+                            System.out.println("Parameter "+atomName1+" that was passed into function was invalid.");
+                            return; 
+                        }
+                        
+                    }
+
+                    if(atomType2.equals("VNAME")){
+                        String atomName2 = atom2.getChildren().get(0).getChildren().get(0).getValue();
+                        SymbolInfo existing = scopeStack.currentScope().lookup(atomName2); 
+                        if(existing!=null){
+                            //valid passed in param because exists already 
+                        }
+                        else{
+                            System.out.println("Parameter "+atomName2+" that was passed into function was invalid.");
+                            return;
+                        }
+                    }
+
+                    if(atomType3.equals("VNAME")){
+                        String atomName3 = atom3.getChildren().get(0).getChildren().get(0).getValue();
+                        SymbolInfo existing = scopeStack.currentScope().lookup(atomName3); 
+                        if(existing!=null){
+                            //valid passed in param because exists already 
+                        }
+                        else{
+                            System.out.println("Parameter "+atomName3+" that was passed into function was invalid.");
+                            return;
+                        }
+                    }
+                    
+                    //at this point passed in params were either consts or they all passed (they were in the scope)
+                    System.out.println("All of the passed in parameter were in the scope.");
+
+
+
+                }
+                else{
+                    //function was not declared
+                    System.out.println("Function "+ fname+" was not declared. Invalid call. ");
+
+                }
+                    
+
+             
+                
+
 
 
 
@@ -175,6 +279,24 @@ public class ScopeAnalyser2 {
 
 
 
+    // private void traverseCalls(Node node){
+
+    //     String type = node.getType(); 
+    //     switch(node.getType()){
+    //         case "CALL": 
+                
+
+
+    //         default: 
+    //             for(Node child: node.getChildren()){
+    //                 traverseCalls(child);
+    //             }
+    //     }
+
+    // }
+
+
+
 }
 
 
@@ -187,15 +309,33 @@ public class ScopeAnalyser2 {
 
 class ScopeStack{
     private Stack<SymbolTable> scopeStack = new Stack<>(); 
+    private List<SymbolTable> symbolTables = new ArrayList<SymbolTable>();
+
 
     public void enterScope() {
         scopeStack.push(new SymbolTable()); 
     }
     public void exitScope() {
-        scopeStack.pop();  
+        //print out the symbol Table
+
+        System.out.println("This is working.................");
+        SymbolTable temp = scopeStack.peek();
+        // System.out.println(temp.toString());  
+        symbolTables.add(temp); 
+        scopeStack.pop(); 
     }
     public SymbolTable currentScope() {
         return scopeStack.peek();
+    }
+
+    public String printSymbolTables(){
+        String temp = ""; 
+        for(SymbolTable st : symbolTables){
+            temp += st.toString();
+            temp += "\n";  
+        }
+        return temp; 
+
     }
 }
 
@@ -208,6 +348,21 @@ class SymbolTable{
 
     public SymbolInfo lookup(String name) {
         return table.get(name);  
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder temp = new StringBuilder("Symbol Table:\n");
+        for (Map.Entry<String, SymbolInfo> entry : table.entrySet()) {
+            String originalName = entry.getKey();
+            SymbolInfo info = entry.getValue();
+            temp.append("Original Name: ").append(originalName)
+                .append(", Unique Name: ").append(info.uniqueName)
+                .append(", Type: ").append(info.type)
+                .append(", Node ID: ").append(info.nodeId)
+                .append("\n");  
+        }
+        return temp.toString();
     }
 }
 

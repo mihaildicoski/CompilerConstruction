@@ -1,24 +1,24 @@
 <SYNTREE>
   <ROOT>
-    <UNID>106</UNID>
+    <UNID>125</UNID>
     <SYMB>PROG</SYMB>
     <CHILDREN>
       <ID>0</ID>
       <ID>19</ID>
-      <ID>41</ID>
-      <ID>105</ID>
+      <ID>60</ID>
+      <ID>124</ID>
     </CHILDREN>
   </ROOT>
 <INNERNODES>
     <LEAF>
-      <PARENT>106</PARENT>
+      <PARENT>125</PARENT>
       <UNID>0</UNID>
       <TERMINAL>
         <TOKEN>main</TOKEN>
       </TERMINAL>
     </LEAF>
     <IN>
-      <PARENT>106</PARENT>
+      <PARENT>125</PARENT>
       <UNID>19</UNID>
       <SYMB>GLOBVARS</SYMB>
       <CHILDREN>
@@ -169,34 +169,34 @@
             </TERMINAL>
           </LEAF>
     <IN>
-      <PARENT>106</PARENT>
-      <UNID>41</UNID>
+      <PARENT>125</PARENT>
+      <UNID>60</UNID>
       <SYMB>ALGO</SYMB>
       <CHILDREN>
         <ID>20</ID>
-        <ID>39</ID>
-        <ID>40</ID>
+        <ID>58</ID>
+        <ID>59</ID>
       </CHILDREN>
     </IN>
       <LEAF>
-        <PARENT>41</PARENT>
+        <PARENT>60</PARENT>
         <UNID>20</UNID>
         <TERMINAL>
           <TOKEN>begin</TOKEN>
         </TERMINAL>
       </LEAF>
       <IN>
-        <PARENT>41</PARENT>
-        <UNID>39</UNID>
+        <PARENT>60</PARENT>
+        <UNID>58</UNID>
         <SYMB>INSTRUC</SYMB>
         <CHILDREN>
           <ID>29</ID>
           <ID>30</ID>
-          <ID>38</ID>
+          <ID>57</ID>
         </CHILDREN>
       </IN>
         <IN>
-          <PARENT>39</PARENT>
+          <PARENT>58</PARENT>
           <UNID>29</UNID>
           <SYMB>COMMAND</SYMB>
           <CHILDREN>
@@ -267,24 +267,24 @@
                     </TERMINAL>
                   </LEAF>
         <LEAF>
-          <PARENT>39</PARENT>
+          <PARENT>58</PARENT>
           <UNID>30</UNID>
           <TERMINAL>
             <TOKEN>;</TOKEN>
           </TERMINAL>
         </LEAF>
         <IN>
-          <PARENT>39</PARENT>
-          <UNID>38</UNID>
+          <PARENT>58</PARENT>
+          <UNID>57</UNID>
           <SYMB>INSTRUC</SYMB>
           <CHILDREN>
             <ID>35</ID>
             <ID>36</ID>
-            <ID>37</ID>
+            <ID>56</ID>
           </CHILDREN>
         </IN>
           <IN>
-            <PARENT>38</PARENT>
+            <PARENT>57</PARENT>
             <UNID>35</UNID>
             <SYMB>COMMAND</SYMB>
             <CHILDREN>
@@ -323,533 +323,685 @@
                   </TERMINAL>
                 </LEAF>
           <LEAF>
-            <PARENT>38</PARENT>
+            <PARENT>57</PARENT>
             <UNID>36</UNID>
             <TERMINAL>
               <TOKEN>;</TOKEN>
             </TERMINAL>
           </LEAF>
-          <LEAF>
-            <PARENT>38</PARENT>
-            <UNID>37</UNID>
-            <TERMINAL>
-              <TOKEN>null</TOKEN>
-            </TERMINAL>
-          </LEAF>
+          <IN>
+            <PARENT>57</PARENT>
+            <UNID>56</UNID>
+            <SYMB>INSTRUC</SYMB>
+            <CHILDREN>
+              <ID>53</ID>
+              <ID>54</ID>
+              <ID>55</ID>
+            </CHILDREN>
+          </IN>
+            <IN>
+              <PARENT>56</PARENT>
+              <UNID>53</UNID>
+              <SYMB>COMMAND</SYMB>
+              <CHILDREN>
+                <ID>52</ID>
+              </CHILDREN>
+            </IN>
+              <IN>
+                <PARENT>53</PARENT>
+                <UNID>52</UNID>
+                <SYMB>CALL</SYMB>
+                <CHILDREN>
+                  <ID>38</ID>
+                  <ID>39</ID>
+                  <ID>42</ID>
+                  <ID>43</ID>
+                  <ID>46</ID>
+                  <ID>47</ID>
+                  <ID>50</ID>
+                  <ID>51</ID>
+                </CHILDREN>
+              </IN>
+                <IN>
+                  <PARENT>52</PARENT>
+                  <UNID>38</UNID>
+                  <SYMB>FNAME</SYMB>
+                  <CHILDREN>
+                    <ID>37</ID>
+                  </CHILDREN>
+                </IN>
+                  <LEAF>
+                    <PARENT>38</PARENT>
+                    <UNID>37</UNID>
+                    <TERMINAL>
+                      <TOKEN>F_miki</TOKEN>
+                    </TERMINAL>
+                  </LEAF>
+                <LEAF>
+                  <PARENT>52</PARENT>
+                  <UNID>39</UNID>
+                  <TERMINAL>
+                    <TOKEN>(</TOKEN>
+                  </TERMINAL>
+                </LEAF>
+                <IN>
+                  <PARENT>52</PARENT>
+                  <UNID>42</UNID>
+                  <SYMB>ATOMIC</SYMB>
+                  <CHILDREN>
+                    <ID>41</ID>
+                  </CHILDREN>
+                </IN>
+                  <IN>
+                    <PARENT>42</PARENT>
+                    <UNID>41</UNID>
+                    <SYMB>VNAME</SYMB>
+                    <CHILDREN>
+                      <ID>40</ID>
+                    </CHILDREN>
+                  </IN>
+                    <LEAF>
+                      <PARENT>41</PARENT>
+                      <UNID>40</UNID>
+                      <TERMINAL>
+                        <TOKEN>V_abc</TOKEN>
+                      </TERMINAL>
+                    </LEAF>
+                <LEAF>
+                  <PARENT>52</PARENT>
+                  <UNID>43</UNID>
+                  <TERMINAL>
+                    <TOKEN>,</TOKEN>
+                  </TERMINAL>
+                </LEAF>
+                <IN>
+                  <PARENT>52</PARENT>
+                  <UNID>46</UNID>
+                  <SYMB>ATOMIC</SYMB>
+                  <CHILDREN>
+                    <ID>45</ID>
+                  </CHILDREN>
+                </IN>
+                  <IN>
+                    <PARENT>46</PARENT>
+                    <UNID>45</UNID>
+                    <SYMB>VNAME</SYMB>
+                    <CHILDREN>
+                      <ID>44</ID>
+                    </CHILDREN>
+                  </IN>
+                    <LEAF>
+                      <PARENT>45</PARENT>
+                      <UNID>44</UNID>
+                      <TERMINAL>
+                        <TOKEN>V_a2</TOKEN>
+                      </TERMINAL>
+                    </LEAF>
+                <LEAF>
+                  <PARENT>52</PARENT>
+                  <UNID>47</UNID>
+                  <TERMINAL>
+                    <TOKEN>,</TOKEN>
+                  </TERMINAL>
+                </LEAF>
+                <IN>
+                  <PARENT>52</PARENT>
+                  <UNID>50</UNID>
+                  <SYMB>ATOMIC</SYMB>
+                  <CHILDREN>
+                    <ID>49</ID>
+                  </CHILDREN>
+                </IN>
+                  <IN>
+                    <PARENT>50</PARENT>
+                    <UNID>49</UNID>
+                    <SYMB>VNAME</SYMB>
+                    <CHILDREN>
+                      <ID>48</ID>
+                    </CHILDREN>
+                  </IN>
+                    <LEAF>
+                      <PARENT>49</PARENT>
+                      <UNID>48</UNID>
+                      <TERMINAL>
+                        <TOKEN>V_a3</TOKEN>
+                      </TERMINAL>
+                    </LEAF>
+                <LEAF>
+                  <PARENT>52</PARENT>
+                  <UNID>51</UNID>
+                  <TERMINAL>
+                    <TOKEN>)</TOKEN>
+                  </TERMINAL>
+                </LEAF>
+            <LEAF>
+              <PARENT>56</PARENT>
+              <UNID>54</UNID>
+              <TERMINAL>
+                <TOKEN>;</TOKEN>
+              </TERMINAL>
+            </LEAF>
+            <LEAF>
+              <PARENT>56</PARENT>
+              <UNID>55</UNID>
+              <TERMINAL>
+                <TOKEN>null</TOKEN>
+              </TERMINAL>
+            </LEAF>
       <LEAF>
-        <PARENT>41</PARENT>
-        <UNID>40</UNID>
+        <PARENT>60</PARENT>
+        <UNID>59</UNID>
         <TERMINAL>
           <TOKEN>end</TOKEN>
         </TERMINAL>
       </LEAF>
     <IN>
-      <PARENT>106</PARENT>
-      <UNID>105</UNID>
+      <PARENT>125</PARENT>
+      <UNID>124</UNID>
       <SYMB>FUNCTIONS</SYMB>
       <CHILDREN>
-        <ID>103</ID>
-        <ID>104</ID>
+        <ID>122</ID>
+        <ID>123</ID>
       </CHILDREN>
     </IN>
       <IN>
-        <PARENT>105</PARENT>
-        <UNID>103</UNID>
+        <PARENT>124</PARENT>
+        <UNID>122</UNID>
         <SYMB>DECL</SYMB>
         <CHILDREN>
-          <ID>56</ID>
-          <ID>102</ID>
+          <ID>75</ID>
+          <ID>121</ID>
         </CHILDREN>
       </IN>
         <IN>
-          <PARENT>103</PARENT>
-          <UNID>56</UNID>
+          <PARENT>122</PARENT>
+          <UNID>75</UNID>
           <SYMB>HEADER</SYMB>
           <CHILDREN>
-            <ID>43</ID>
-            <ID>45</ID>
-            <ID>46</ID>
-            <ID>48</ID>
-            <ID>49</ID>
-            <ID>51</ID>
-            <ID>52</ID>
-            <ID>54</ID>
-            <ID>55</ID>
+            <ID>62</ID>
+            <ID>64</ID>
+            <ID>65</ID>
+            <ID>67</ID>
+            <ID>68</ID>
+            <ID>70</ID>
+            <ID>71</ID>
+            <ID>73</ID>
+            <ID>74</ID>
           </CHILDREN>
         </IN>
           <IN>
-            <PARENT>56</PARENT>
-            <UNID>43</UNID>
+            <PARENT>75</PARENT>
+            <UNID>62</UNID>
             <SYMB>FTYP</SYMB>
             <CHILDREN>
-              <ID>42</ID>
+              <ID>61</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>43</PARENT>
-              <UNID>42</UNID>
+              <PARENT>62</PARENT>
+              <UNID>61</UNID>
               <TERMINAL>
                 <TOKEN>void</TOKEN>
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>56</PARENT>
-            <UNID>45</UNID>
+            <PARENT>75</PARENT>
+            <UNID>64</UNID>
             <SYMB>FNAME</SYMB>
             <CHILDREN>
-              <ID>44</ID>
+              <ID>63</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>45</PARENT>
-              <UNID>44</UNID>
+              <PARENT>64</PARENT>
+              <UNID>63</UNID>
               <TERMINAL>
                 <TOKEN>F_miki</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
-            <PARENT>56</PARENT>
-            <UNID>46</UNID>
+            <PARENT>75</PARENT>
+            <UNID>65</UNID>
             <TERMINAL>
               <TOKEN>(</TOKEN>
             </TERMINAL>
           </LEAF>
           <IN>
-            <PARENT>56</PARENT>
-            <UNID>48</UNID>
+            <PARENT>75</PARENT>
+            <UNID>67</UNID>
             <SYMB>VNAME</SYMB>
             <CHILDREN>
-              <ID>47</ID>
+              <ID>66</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>48</PARENT>
-              <UNID>47</UNID>
+              <PARENT>67</PARENT>
+              <UNID>66</UNID>
               <TERMINAL>
                 <TOKEN>V_abc</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
-            <PARENT>56</PARENT>
-            <UNID>49</UNID>
+            <PARENT>75</PARENT>
+            <UNID>68</UNID>
             <TERMINAL>
               <TOKEN>,</TOKEN>
             </TERMINAL>
           </LEAF>
           <IN>
-            <PARENT>56</PARENT>
-            <UNID>51</UNID>
+            <PARENT>75</PARENT>
+            <UNID>70</UNID>
             <SYMB>VNAME</SYMB>
             <CHILDREN>
-              <ID>50</ID>
+              <ID>69</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>51</PARENT>
-              <UNID>50</UNID>
+              <PARENT>70</PARENT>
+              <UNID>69</UNID>
               <TERMINAL>
                 <TOKEN>V_a2</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
-            <PARENT>56</PARENT>
-            <UNID>52</UNID>
+            <PARENT>75</PARENT>
+            <UNID>71</UNID>
             <TERMINAL>
               <TOKEN>,</TOKEN>
             </TERMINAL>
           </LEAF>
           <IN>
-            <PARENT>56</PARENT>
-            <UNID>54</UNID>
+            <PARENT>75</PARENT>
+            <UNID>73</UNID>
             <SYMB>VNAME</SYMB>
             <CHILDREN>
-              <ID>53</ID>
+              <ID>72</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>54</PARENT>
-              <UNID>53</UNID>
+              <PARENT>73</PARENT>
+              <UNID>72</UNID>
               <TERMINAL>
                 <TOKEN>V_a3</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
-            <PARENT>56</PARENT>
-            <UNID>55</UNID>
+            <PARENT>75</PARENT>
+            <UNID>74</UNID>
             <TERMINAL>
               <TOKEN>)</TOKEN>
             </TERMINAL>
           </LEAF>
         <IN>
-          <PARENT>103</PARENT>
-          <UNID>102</UNID>
+          <PARENT>122</PARENT>
+          <UNID>121</UNID>
           <SYMB>BODY</SYMB>
           <CHILDREN>
-            <ID>58</ID>
-            <ID>74</ID>
-            <ID>96</ID>
-            <ID>98</ID>
-            <ID>100</ID>
-            <ID>101</ID>
+            <ID>77</ID>
+            <ID>93</ID>
+            <ID>115</ID>
+            <ID>117</ID>
+            <ID>119</ID>
+            <ID>120</ID>
           </CHILDREN>
         </IN>
           <IN>
-            <PARENT>102</PARENT>
-            <UNID>58</UNID>
+            <PARENT>121</PARENT>
+            <UNID>77</UNID>
             <SYMB>PROLOG</SYMB>
             <CHILDREN>
-              <ID>57</ID>
+              <ID>76</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>58</PARENT>
-              <UNID>57</UNID>
+              <PARENT>77</PARENT>
+              <UNID>76</UNID>
               <TERMINAL>
                 <TOKEN>{</TOKEN>
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>102</PARENT>
-            <UNID>74</UNID>
+            <PARENT>121</PARENT>
+            <UNID>93</UNID>
             <SYMB>LOCVARS</SYMB>
             <CHILDREN>
-              <ID>60</ID>
-              <ID>62</ID>
-              <ID>63</ID>
-              <ID>65</ID>
-              <ID>67</ID>
-              <ID>68</ID>
-              <ID>70</ID>
-              <ID>72</ID>
-              <ID>73</ID>
+              <ID>79</ID>
+              <ID>81</ID>
+              <ID>82</ID>
+              <ID>84</ID>
+              <ID>86</ID>
+              <ID>87</ID>
+              <ID>89</ID>
+              <ID>91</ID>
+              <ID>92</ID>
             </CHILDREN>
           </IN>
             <IN>
-              <PARENT>74</PARENT>
-              <UNID>60</UNID>
+              <PARENT>93</PARENT>
+              <UNID>79</UNID>
               <SYMB>VTYP</SYMB>
               <CHILDREN>
-                <ID>59</ID>
+                <ID>78</ID>
               </CHILDREN>
             </IN>
               <LEAF>
-                <PARENT>60</PARENT>
-                <UNID>59</UNID>
+                <PARENT>79</PARENT>
+                <UNID>78</UNID>
                 <TERMINAL>
                   <TOKEN>num</TOKEN>
                 </TERMINAL>
               </LEAF>
             <IN>
-              <PARENT>74</PARENT>
-              <UNID>62</UNID>
+              <PARENT>93</PARENT>
+              <UNID>81</UNID>
               <SYMB>VNAME</SYMB>
               <CHILDREN>
-                <ID>61</ID>
+                <ID>80</ID>
               </CHILDREN>
             </IN>
               <LEAF>
-                <PARENT>62</PARENT>
-                <UNID>61</UNID>
+                <PARENT>81</PARENT>
+                <UNID>80</UNID>
                 <TERMINAL>
                   <TOKEN>V_novi1</TOKEN>
                 </TERMINAL>
               </LEAF>
             <LEAF>
-              <PARENT>74</PARENT>
-              <UNID>63</UNID>
+              <PARENT>93</PARENT>
+              <UNID>82</UNID>
               <TERMINAL>
                 <TOKEN>,</TOKEN>
               </TERMINAL>
             </LEAF>
             <IN>
-              <PARENT>74</PARENT>
-              <UNID>65</UNID>
+              <PARENT>93</PARENT>
+              <UNID>84</UNID>
               <SYMB>VTYP</SYMB>
               <CHILDREN>
-                <ID>64</ID>
+                <ID>83</ID>
               </CHILDREN>
             </IN>
               <LEAF>
-                <PARENT>65</PARENT>
-                <UNID>64</UNID>
+                <PARENT>84</PARENT>
+                <UNID>83</UNID>
                 <TERMINAL>
                   <TOKEN>num</TOKEN>
                 </TERMINAL>
               </LEAF>
             <IN>
-              <PARENT>74</PARENT>
-              <UNID>67</UNID>
+              <PARENT>93</PARENT>
+              <UNID>86</UNID>
               <SYMB>VNAME</SYMB>
               <CHILDREN>
-                <ID>66</ID>
+                <ID>85</ID>
               </CHILDREN>
             </IN>
               <LEAF>
-                <PARENT>67</PARENT>
-                <UNID>66</UNID>
+                <PARENT>86</PARENT>
+                <UNID>85</UNID>
                 <TERMINAL>
                   <TOKEN>V_novi2</TOKEN>
                 </TERMINAL>
               </LEAF>
             <LEAF>
-              <PARENT>74</PARENT>
-              <UNID>68</UNID>
+              <PARENT>93</PARENT>
+              <UNID>87</UNID>
               <TERMINAL>
                 <TOKEN>,</TOKEN>
               </TERMINAL>
             </LEAF>
             <IN>
-              <PARENT>74</PARENT>
-              <UNID>70</UNID>
+              <PARENT>93</PARENT>
+              <UNID>89</UNID>
               <SYMB>VTYP</SYMB>
               <CHILDREN>
-                <ID>69</ID>
+                <ID>88</ID>
               </CHILDREN>
             </IN>
               <LEAF>
-                <PARENT>70</PARENT>
-                <UNID>69</UNID>
+                <PARENT>89</PARENT>
+                <UNID>88</UNID>
                 <TERMINAL>
                   <TOKEN>num</TOKEN>
                 </TERMINAL>
               </LEAF>
             <IN>
-              <PARENT>74</PARENT>
-              <UNID>72</UNID>
+              <PARENT>93</PARENT>
+              <UNID>91</UNID>
               <SYMB>VNAME</SYMB>
               <CHILDREN>
-                <ID>71</ID>
+                <ID>90</ID>
               </CHILDREN>
             </IN>
               <LEAF>
-                <PARENT>72</PARENT>
-                <UNID>71</UNID>
+                <PARENT>91</PARENT>
+                <UNID>90</UNID>
                 <TERMINAL>
                   <TOKEN>V_novi3</TOKEN>
                 </TERMINAL>
               </LEAF>
             <LEAF>
-              <PARENT>74</PARENT>
-              <UNID>73</UNID>
+              <PARENT>93</PARENT>
+              <UNID>92</UNID>
               <TERMINAL>
                 <TOKEN>,</TOKEN>
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>102</PARENT>
-            <UNID>96</UNID>
+            <PARENT>121</PARENT>
+            <UNID>115</UNID>
             <SYMB>ALGO</SYMB>
             <CHILDREN>
-              <ID>75</ID>
               <ID>94</ID>
-              <ID>95</ID>
+              <ID>113</ID>
+              <ID>114</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>96</PARENT>
-              <UNID>75</UNID>
+              <PARENT>115</PARENT>
+              <UNID>94</UNID>
               <TERMINAL>
                 <TOKEN>begin</TOKEN>
               </TERMINAL>
             </LEAF>
             <IN>
-              <PARENT>96</PARENT>
-              <UNID>94</UNID>
+              <PARENT>115</PARENT>
+              <UNID>113</UNID>
               <SYMB>INSTRUC</SYMB>
               <CHILDREN>
-                <ID>84</ID>
-                <ID>85</ID>
-                <ID>93</ID>
+                <ID>103</ID>
+                <ID>104</ID>
+                <ID>112</ID>
               </CHILDREN>
             </IN>
               <IN>
-                <PARENT>94</PARENT>
-                <UNID>84</UNID>
+                <PARENT>113</PARENT>
+                <UNID>103</UNID>
                 <SYMB>COMMAND</SYMB>
                 <CHILDREN>
-                  <ID>83</ID>
+                  <ID>102</ID>
                 </CHILDREN>
               </IN>
                 <IN>
-                  <PARENT>84</PARENT>
-                  <UNID>83</UNID>
+                  <PARENT>103</PARENT>
+                  <UNID>102</UNID>
                   <SYMB>ASSIGN</SYMB>
                   <CHILDREN>
-                    <ID>77</ID>
-                    <ID>78</ID>
-                    <ID>82</ID>
+                    <ID>96</ID>
+                    <ID>97</ID>
+                    <ID>101</ID>
                   </CHILDREN>
                 </IN>
                   <IN>
-                    <PARENT>83</PARENT>
-                    <UNID>77</UNID>
+                    <PARENT>102</PARENT>
+                    <UNID>96</UNID>
                     <SYMB>VNAME</SYMB>
                     <CHILDREN>
-                      <ID>76</ID>
+                      <ID>95</ID>
                     </CHILDREN>
                   </IN>
                     <LEAF>
-                      <PARENT>77</PARENT>
-                      <UNID>76</UNID>
+                      <PARENT>96</PARENT>
+                      <UNID>95</UNID>
                       <TERMINAL>
                         <TOKEN>V_novi2</TOKEN>
                       </TERMINAL>
                     </LEAF>
                   <LEAF>
-                    <PARENT>83</PARENT>
-                    <UNID>78</UNID>
+                    <PARENT>102</PARENT>
+                    <UNID>97</UNID>
                     <TERMINAL>
                       <TOKEN>=</TOKEN>
                     </TERMINAL>
                   </LEAF>
                   <IN>
-                    <PARENT>83</PARENT>
-                    <UNID>82</UNID>
+                    <PARENT>102</PARENT>
+                    <UNID>101</UNID>
                     <SYMB>TERM</SYMB>
                     <CHILDREN>
-                      <ID>81</ID>
+                      <ID>100</ID>
                     </CHILDREN>
                   </IN>
                     <IN>
-                      <PARENT>82</PARENT>
-                      <UNID>81</UNID>
+                      <PARENT>101</PARENT>
+                      <UNID>100</UNID>
                       <SYMB>ATOMIC</SYMB>
                       <CHILDREN>
-                        <ID>80</ID>
+                        <ID>99</ID>
                       </CHILDREN>
                     </IN>
                       <IN>
-                        <PARENT>81</PARENT>
-                        <UNID>80</UNID>
+                        <PARENT>100</PARENT>
+                        <UNID>99</UNID>
                         <SYMB>VNAME</SYMB>
                         <CHILDREN>
-                          <ID>79</ID>
+                          <ID>98</ID>
                         </CHILDREN>
                       </IN>
                         <LEAF>
-                          <PARENT>80</PARENT>
-                          <UNID>79</UNID>
+                          <PARENT>99</PARENT>
+                          <UNID>98</UNID>
                           <TERMINAL>
                             <TOKEN>V_a3</TOKEN>
                           </TERMINAL>
                         </LEAF>
               <LEAF>
-                <PARENT>94</PARENT>
-                <UNID>85</UNID>
+                <PARENT>113</PARENT>
+                <UNID>104</UNID>
                 <TERMINAL>
                   <TOKEN>;</TOKEN>
                 </TERMINAL>
               </LEAF>
               <IN>
-                <PARENT>94</PARENT>
-                <UNID>93</UNID>
+                <PARENT>113</PARENT>
+                <UNID>112</UNID>
                 <SYMB>INSTRUC</SYMB>
                 <CHILDREN>
-                  <ID>90</ID>
-                  <ID>91</ID>
-                  <ID>92</ID>
+                  <ID>109</ID>
+                  <ID>110</ID>
+                  <ID>111</ID>
                 </CHILDREN>
               </IN>
                 <IN>
-                  <PARENT>93</PARENT>
-                  <UNID>90</UNID>
+                  <PARENT>112</PARENT>
+                  <UNID>109</UNID>
                   <SYMB>COMMAND</SYMB>
                   <CHILDREN>
-                    <ID>86</ID>
-                    <ID>89</ID>
+                    <ID>105</ID>
+                    <ID>108</ID>
                   </CHILDREN>
                 </IN>
                   <LEAF>
-                    <PARENT>90</PARENT>
-                    <UNID>86</UNID>
+                    <PARENT>109</PARENT>
+                    <UNID>105</UNID>
                     <TERMINAL>
                       <TOKEN>print</TOKEN>
                     </TERMINAL>
                   </LEAF>
                   <IN>
-                    <PARENT>90</PARENT>
-                    <UNID>89</UNID>
+                    <PARENT>109</PARENT>
+                    <UNID>108</UNID>
                     <SYMB>ATOMIC</SYMB>
                     <CHILDREN>
-                      <ID>88</ID>
+                      <ID>107</ID>
                     </CHILDREN>
                   </IN>
                     <IN>
-                      <PARENT>89</PARENT>
-                      <UNID>88</UNID>
+                      <PARENT>108</PARENT>
+                      <UNID>107</UNID>
                       <SYMB>VNAME</SYMB>
                       <CHILDREN>
-                        <ID>87</ID>
+                        <ID>106</ID>
                       </CHILDREN>
                     </IN>
                       <LEAF>
-                        <PARENT>88</PARENT>
-                        <UNID>87</UNID>
+                        <PARENT>107</PARENT>
+                        <UNID>106</UNID>
                         <TERMINAL>
                           <TOKEN>V_novi2</TOKEN>
                         </TERMINAL>
                       </LEAF>
                 <LEAF>
-                  <PARENT>93</PARENT>
-                  <UNID>91</UNID>
+                  <PARENT>112</PARENT>
+                  <UNID>110</UNID>
                   <TERMINAL>
                     <TOKEN>;</TOKEN>
                   </TERMINAL>
                 </LEAF>
                 <LEAF>
-                  <PARENT>93</PARENT>
-                  <UNID>92</UNID>
+                  <PARENT>112</PARENT>
+                  <UNID>111</UNID>
                   <TERMINAL>
                     <TOKEN>null</TOKEN>
                   </TERMINAL>
                 </LEAF>
             <LEAF>
-              <PARENT>96</PARENT>
-              <UNID>95</UNID>
+              <PARENT>115</PARENT>
+              <UNID>114</UNID>
               <TERMINAL>
                 <TOKEN>end</TOKEN>
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>102</PARENT>
-            <UNID>98</UNID>
+            <PARENT>121</PARENT>
+            <UNID>117</UNID>
             <SYMB>EPILOG</SYMB>
             <CHILDREN>
-              <ID>97</ID>
+              <ID>116</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>98</PARENT>
-              <UNID>97</UNID>
+              <PARENT>117</PARENT>
+              <UNID>116</UNID>
               <TERMINAL>
                 <TOKEN>}</TOKEN>
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>102</PARENT>
-            <UNID>100</UNID>
+            <PARENT>121</PARENT>
+            <UNID>119</UNID>
             <SYMB>SUBFUNCS</SYMB>
             <CHILDREN>
-              <ID>99</ID>
+              <ID>118</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>100</PARENT>
-              <UNID>99</UNID>
+              <PARENT>119</PARENT>
+              <UNID>118</UNID>
               <TERMINAL>
                 <TOKEN>null</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
-            <PARENT>102</PARENT>
-            <UNID>101</UNID>
+            <PARENT>121</PARENT>
+            <UNID>120</UNID>
             <TERMINAL>
               <TOKEN>end</TOKEN>
             </TERMINAL>
           </LEAF>
       <LEAF>
-        <PARENT>105</PARENT>
-        <UNID>104</UNID>
+        <PARENT>124</PARENT>
+        <UNID>123</UNID>
         <TERMINAL>
           <TOKEN>null</TOKEN>
         </TERMINAL>
