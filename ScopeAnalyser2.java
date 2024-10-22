@@ -21,14 +21,23 @@ public class ScopeAnalyser2 {
         }
     }
 
-    public Node analyse(Node root){
-        scopeStack.enterScope(); 
+    public SymbolTable analyse(Node root){
+        scopeStack.enterScope();
+        scopeStack.currentScope().setName("main"); 
         traverse(root); 
+        SymbolTable rootTable = scopeStack.currentScope(); 
         scopeStack.exitScope();   
-        System.out.println("Func and var internal renaming......");
-        printAST(root, " ");
-        System.out.println(scopeStack.printSymbolTables());
-        return root; 
+        // System.out.println("Func and var internal renaming......");
+        // printAST(root, " ");
+        // System.out.println(scopeStack.printSymbolTables());
+        return rootTable; 
+    }
+
+    public void printTables(SymbolTable rootSymbolTable){
+        System.out.println(rootSymbolTable.toString());
+        for(SymbolTable child: rootSymbolTable.getChildren()){
+            printTables(child); 
+        }
     }
 
    
@@ -73,6 +82,7 @@ public class ScopeAnalyser2 {
                         //traverse(header);
                         //make sure you have to 
                         scopeStack.enterScope();
+                        scopeStack.currentScope().setName(functionName);
                         //scope is entered on the decl
                         for(Node child: node.getChildren()){
                             traverse(child);
@@ -145,11 +155,21 @@ public class ScopeAnalyser2 {
                 String noviName2 = "v"+(vCounter++);
                 String noviName3 = "v"+(vCounter++);
 
+                //check if the three vnames are different
+                if(prvi.equals(drugi) || prvi.equals(treci) || drugi.equals(treci)){
+                    System.out.println("Localvars contain duplicate variable names. Invalid");
+                    return; 
+                }
+
                 scopeStack.currentScope().addSymbol(prvi, noviName1, type1, prvi_id);
                 scopeStack.currentScope().addSymbol(drugi, noviName2, type2, drugi_id);
                 scopeStack.currentScope().addSymbol(treci, noviName3, type3, treci_id);
 
                 //finished localvars 
+                List<Node> childrenfrom3 = node.getChildren().subList(2, 5);
+                for(Node child: childrenfrom3){
+                    traverse(child);
+                }
 
                 break; 
 
@@ -189,12 +209,20 @@ public class ScopeAnalyser2 {
                     Node vtyp = node.getChildren().get(0); 
                     Node vname = node.getChildren().get(1); 
                     String typeVar = vtyp.getChildren().get(0).getValue(); 
-                    String originalName = vname.getChildren().get(0).getValue(); 
-                    String uniqueName = "v" + (vCounter++); 
-                    int id = vname.getChildren().get(0).getId(); 
-                    scopeStack.currentScope().addSymbol(originalName, uniqueName, typeVar, id);
-                    vname.getChildren().get(0).setValue(uniqueName);
-                    traverse(node.getChildren().get(3));
+                    String originalName = vname.getChildren().get(0).getValue();
+                    SymbolInfo existingvar = scopeStack.currentScope().lookup(originalName);
+                    if(existingvar!=null){
+                        //declared beforehand throw an error
+                        System.out.println("Globvar with name "+ originalName+ " already declared.");
+                        return; 
+                    }
+                    else{
+                        String uniqueName = "v" + (vCounter++); 
+                        int id = vname.getChildren().get(0).getId(); 
+                        scopeStack.currentScope().addSymbol(originalName, uniqueName, typeVar, id);
+                        vname.getChildren().get(0).setValue(uniqueName);
+                        traverse(node.getChildren().get(3));
+                    }
                 }
                 break; 
 
@@ -218,8 +246,23 @@ public class ScopeAnalyser2 {
                             //valid passed in param because exists already 
                         }
                         else{
-                            System.out.println("Parameter "+atomName1+" that was passed into function was invalid.");
-                            return; 
+                            //while getParent() is not null keep checking parent symbol table to see if it exists
+                            //if not then throw error if exists then you can continue
+                            SymbolTable parent = scopeStack.currentScope().getParent(); 
+                            boolean found = false; 
+                            while(parent!=null){
+                                SymbolInfo temporaryexists = parent.lookup(atomName1); 
+                                if(temporaryexists!=null){
+                                    //we found the var in an upper scope we can break
+                                    found = true; 
+                                    break; 
+                                }
+                                parent = parent.getParent(); 
+                            }
+                            if(!found){
+                                System.out.println("Parameter "+atomName1+" that was passed into function was invalid.");
+                                return; 
+                            }
                         }
                         
                     }
@@ -231,8 +274,22 @@ public class ScopeAnalyser2 {
                             //valid passed in param because exists already 
                         }
                         else{
-                            System.out.println("Parameter "+atomName2+" that was passed into function was invalid.");
-                            return;
+                            
+                            SymbolTable parent = scopeStack.currentScope().getParent(); 
+                            boolean found = false; 
+                            while(parent!=null){
+                                SymbolInfo temporaryexists = parent.lookup(atomName2); 
+                                if(temporaryexists!=null){
+                                    //we found the var in an upper scope we can break
+                                    found = true; 
+                                    break; 
+                                }
+                                parent = parent.getParent(); 
+                            }
+                            if(!found){
+                                System.out.println("Parameter "+atomName2+" that was passed into function was invalid.");
+                                return; 
+                            }
                         }
                     }
 
@@ -243,13 +300,26 @@ public class ScopeAnalyser2 {
                             //valid passed in param because exists already 
                         }
                         else{
-                            System.out.println("Parameter "+atomName3+" that was passed into function was invalid.");
-                            return;
+                            SymbolTable parent = scopeStack.currentScope().getParent(); 
+                            boolean found = false; 
+                            while(parent!=null){
+                                SymbolInfo temporaryexists = parent.lookup(atomName3); 
+                                if(temporaryexists!=null){
+                                    //we found the var in an upper scope we can break
+                                    found = true; 
+                                    break; 
+                                }
+                                parent = parent.getParent(); 
+                            }
+                            if(!found){
+                                System.out.println("Parameter "+atomName3+" that was passed into function was invalid.");
+                                return; 
+                            }
                         }
                     }
                     
                     //at this point passed in params were either consts or they all passed (they were in the scope)
-                    System.out.println("All of the passed in parameter were in the scope.");
+                    System.out.println("All of the passed in parameter were in the scope or upper scope.");
 
 
 
@@ -262,7 +332,65 @@ public class ScopeAnalyser2 {
                     
 
              
-                
+            case "ATOMIC": 
+                String atomType = node.getChildren().get(0).getType();
+                if(atomType.equals("VNAME")){
+                    //check if the var was declared previously 
+                    String atomName = node.getChildren().get(0).getChildren().get(0).getValue();
+                    SymbolInfo existing = scopeStack.currentScope().lookup(atomName); 
+                    if(existing!=null){
+                        //valid passed in param because exists already 
+                    }
+                    else{
+                        //while getParent() is not null keep checking parent symbol table to see if it exists
+                        //if not then throw error if exists then you can continue
+                        SymbolTable parent = scopeStack.currentScope().getParent(); 
+                        boolean found = false; 
+                        while(parent!=null){
+                            SymbolInfo temporaryexists = parent.lookup(atomName); 
+                            if(temporaryexists!=null){
+                                //we found the var in an upper scope we can break
+                                found = true; 
+                                break; 
+                            }
+                            parent = parent.getParent(); 
+                        }
+                        if(!found){
+                            System.out.println("Variable "+atomName+" is not declared.");
+                            return; 
+                        }
+                    }
+
+                }
+
+                break; 
+
+
+            case "ASSIGN": 
+                //check that the vname was declared beforehand 
+                Node vname = node.getChildren().get(0); 
+                String actualVname = vname.getChildren().get(0).getValue(); 
+                SymbolInfo existing = scopeStack.currentScope().lookup(actualVname); 
+                if(existing != null){
+                    
+                }
+                else{
+                    SymbolTable parent = scopeStack.currentScope().getParent(); 
+                    boolean found = false; 
+                    while(parent!=null){
+                        SymbolInfo temporaryexists = parent.lookup(actualVname); 
+                        if(temporaryexists!=null){
+                            found = true; 
+                            break; 
+                        }
+                        parent = parent.getParent(); 
+                    }
+                    if(!found){
+                        System.out.println("Variable "+actualVname+" is not declared.");
+                        return; 
+                    }
+                }
+                break; 
 
 
 
@@ -313,16 +441,26 @@ class ScopeStack{
 
 
     public void enterScope() {
-        scopeStack.push(new SymbolTable()); 
+        if(!scopeStack.isEmpty()){
+            SymbolTable parent = scopeStack.peek(); 
+            scopeStack.push(new SymbolTable()); 
+            scopeStack.peek().setParent(parent);
+        }
+        else{
+            scopeStack.push(new SymbolTable()); 
+        }
     }
     public void exitScope() {
         //print out the symbol Table
 
-        System.out.println("This is working.................");
+        // System.out.println("This is working.................");
         SymbolTable temp = scopeStack.peek();
         // System.out.println(temp.toString());  
         symbolTables.add(temp); 
         scopeStack.pop(); 
+        if(!scopeStack.isEmpty()){
+            scopeStack.peek().addChild(temp);
+        }
     }
     public SymbolTable currentScope() {
         return scopeStack.peek();
@@ -341,6 +479,9 @@ class ScopeStack{
 
 class SymbolTable{
     private Map<String, SymbolInfo> table = new HashMap<>();
+    private String tableName; 
+    private List<SymbolTable> children = new ArrayList<>();
+    private SymbolTable parent; 
 
     public void addSymbol(String originalName, String uniqueName, String type, int nodeId) {
         table.put(originalName, new SymbolInfo(uniqueName, type, nodeId));
@@ -352,7 +493,7 @@ class SymbolTable{
 
     @Override
     public String toString() {
-        StringBuilder temp = new StringBuilder("Symbol Table:\n");
+        StringBuilder temp = new StringBuilder("Symbol Table: " + tableName+ "\n");
         for (Map.Entry<String, SymbolInfo> entry : table.entrySet()) {
             String originalName = entry.getKey();
             SymbolInfo info = entry.getValue();
@@ -363,6 +504,27 @@ class SymbolTable{
                 .append("\n");  
         }
         return temp.toString();
+    }
+
+    public void setName(String name){
+        this.tableName = name; 
+    }
+
+    public void addChild(SymbolTable n){
+        n.setParent(this); 
+        this.children.add(n);
+    }
+
+    public void setParent(SymbolTable parent){
+        this.parent = parent; 
+    }
+
+    public SymbolTable getParent(){
+        return this.parent; 
+    }
+
+    public List<SymbolTable> getChildren(){
+        return this.children; 
     }
 }
 

@@ -1,24 +1,24 @@
 <SYNTREE>
   <ROOT>
-    <UNID>125</UNID>
+    <UNID>136</UNID>
     <SYMB>PROG</SYMB>
     <CHILDREN>
       <ID>0</ID>
       <ID>19</ID>
       <ID>60</ID>
-      <ID>124</ID>
+      <ID>135</ID>
     </CHILDREN>
   </ROOT>
 <INNERNODES>
     <LEAF>
-      <PARENT>125</PARENT>
+      <PARENT>136</PARENT>
       <UNID>0</UNID>
       <TERMINAL>
         <TOKEN>main</TOKEN>
       </TERMINAL>
     </LEAF>
     <IN>
-      <PARENT>125</PARENT>
+      <PARENT>136</PARENT>
       <UNID>19</UNID>
       <SYMB>GLOBVARS</SYMB>
       <CHILDREN>
@@ -169,7 +169,7 @@
             </TERMINAL>
           </LEAF>
     <IN>
-      <PARENT>125</PARENT>
+      <PARENT>136</PARENT>
       <UNID>60</UNID>
       <SYMB>ALGO</SYMB>
       <CHILDREN>
@@ -496,25 +496,25 @@
         </TERMINAL>
       </LEAF>
     <IN>
-      <PARENT>125</PARENT>
-      <UNID>124</UNID>
+      <PARENT>136</PARENT>
+      <UNID>135</UNID>
       <SYMB>FUNCTIONS</SYMB>
       <CHILDREN>
-        <ID>122</ID>
-        <ID>123</ID>
+        <ID>133</ID>
+        <ID>134</ID>
       </CHILDREN>
     </IN>
       <IN>
-        <PARENT>124</PARENT>
-        <UNID>122</UNID>
+        <PARENT>135</PARENT>
+        <UNID>133</UNID>
         <SYMB>DECL</SYMB>
         <CHILDREN>
           <ID>75</ID>
-          <ID>121</ID>
+          <ID>132</ID>
         </CHILDREN>
       </IN>
         <IN>
-          <PARENT>122</PARENT>
+          <PARENT>133</PARENT>
           <UNID>75</UNID>
           <SYMB>HEADER</SYMB>
           <CHILDREN>
@@ -578,7 +578,7 @@
               <PARENT>67</PARENT>
               <UNID>66</UNID>
               <TERMINAL>
-                <TOKEN>V_abc</TOKEN>
+                <TOKEN>V_miks</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
@@ -600,7 +600,7 @@
               <PARENT>70</PARENT>
               <UNID>69</UNID>
               <TERMINAL>
-                <TOKEN>V_a2</TOKEN>
+                <TOKEN>V_miks2</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
@@ -622,7 +622,7 @@
               <PARENT>73</PARENT>
               <UNID>72</UNID>
               <TERMINAL>
-                <TOKEN>V_a3</TOKEN>
+                <TOKEN>V_miks3</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
@@ -633,20 +633,20 @@
             </TERMINAL>
           </LEAF>
         <IN>
-          <PARENT>122</PARENT>
-          <UNID>121</UNID>
+          <PARENT>133</PARENT>
+          <UNID>132</UNID>
           <SYMB>BODY</SYMB>
           <CHILDREN>
             <ID>77</ID>
             <ID>93</ID>
-            <ID>115</ID>
-            <ID>117</ID>
-            <ID>119</ID>
-            <ID>120</ID>
+            <ID>126</ID>
+            <ID>128</ID>
+            <ID>130</ID>
+            <ID>131</ID>
           </CHILDREN>
         </IN>
           <IN>
-            <PARENT>121</PARENT>
+            <PARENT>132</PARENT>
             <UNID>77</UNID>
             <SYMB>PROLOG</SYMB>
             <CHILDREN>
@@ -661,7 +661,7 @@
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>121</PARENT>
+            <PARENT>132</PARENT>
             <UNID>93</UNID>
             <SYMB>LOCVARS</SYMB>
             <CHILDREN>
@@ -740,7 +740,7 @@
                 <PARENT>86</PARENT>
                 <UNID>85</UNID>
                 <TERMINAL>
-                  <TOKEN>V_novi2</TOKEN>
+                  <TOKEN>V_novi1</TOKEN>
                 </TERMINAL>
               </LEAF>
             <LEAF>
@@ -788,34 +788,34 @@
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>121</PARENT>
-            <UNID>115</UNID>
+            <PARENT>132</PARENT>
+            <UNID>126</UNID>
             <SYMB>ALGO</SYMB>
             <CHILDREN>
               <ID>94</ID>
-              <ID>113</ID>
-              <ID>114</ID>
+              <ID>124</ID>
+              <ID>125</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>115</PARENT>
+              <PARENT>126</PARENT>
               <UNID>94</UNID>
               <TERMINAL>
                 <TOKEN>begin</TOKEN>
               </TERMINAL>
             </LEAF>
             <IN>
-              <PARENT>115</PARENT>
-              <UNID>113</UNID>
+              <PARENT>126</PARENT>
+              <UNID>124</UNID>
               <SYMB>INSTRUC</SYMB>
               <CHILDREN>
                 <ID>103</ID>
                 <ID>104</ID>
-                <ID>112</ID>
+                <ID>123</ID>
               </CHILDREN>
             </IN>
               <IN>
-                <PARENT>113</PARENT>
+                <PARENT>124</PARENT>
                 <UNID>103</UNID>
                 <SYMB>COMMAND</SYMB>
                 <CHILDREN>
@@ -886,24 +886,24 @@
                           </TERMINAL>
                         </LEAF>
               <LEAF>
-                <PARENT>113</PARENT>
+                <PARENT>124</PARENT>
                 <UNID>104</UNID>
                 <TERMINAL>
                   <TOKEN>;</TOKEN>
                 </TERMINAL>
               </LEAF>
               <IN>
-                <PARENT>113</PARENT>
-                <UNID>112</UNID>
+                <PARENT>124</PARENT>
+                <UNID>123</UNID>
                 <SYMB>INSTRUC</SYMB>
                 <CHILDREN>
                   <ID>109</ID>
                   <ID>110</ID>
-                  <ID>111</ID>
+                  <ID>122</ID>
                 </CHILDREN>
               </IN>
                 <IN>
-                  <PARENT>112</PARENT>
+                  <PARENT>123</PARENT>
                   <UNID>109</UNID>
                   <SYMB>COMMAND</SYMB>
                   <CHILDREN>
@@ -938,70 +938,158 @@
                         <PARENT>107</PARENT>
                         <UNID>106</UNID>
                         <TERMINAL>
-                          <TOKEN>V_novi2</TOKEN>
+                          <TOKEN>V_novi289</TOKEN>
                         </TERMINAL>
                       </LEAF>
                 <LEAF>
-                  <PARENT>112</PARENT>
+                  <PARENT>123</PARENT>
                   <UNID>110</UNID>
                   <TERMINAL>
                     <TOKEN>;</TOKEN>
                   </TERMINAL>
                 </LEAF>
-                <LEAF>
-                  <PARENT>112</PARENT>
-                  <UNID>111</UNID>
-                  <TERMINAL>
-                    <TOKEN>null</TOKEN>
-                  </TERMINAL>
-                </LEAF>
+                <IN>
+                  <PARENT>123</PARENT>
+                  <UNID>122</UNID>
+                  <SYMB>INSTRUC</SYMB>
+                  <CHILDREN>
+                    <ID>119</ID>
+                    <ID>120</ID>
+                    <ID>121</ID>
+                  </CHILDREN>
+                </IN>
+                  <IN>
+                    <PARENT>122</PARENT>
+                    <UNID>119</UNID>
+                    <SYMB>COMMAND</SYMB>
+                    <CHILDREN>
+                      <ID>118</ID>
+                    </CHILDREN>
+                  </IN>
+                    <IN>
+                      <PARENT>119</PARENT>
+                      <UNID>118</UNID>
+                      <SYMB>ASSIGN</SYMB>
+                      <CHILDREN>
+                        <ID>112</ID>
+                        <ID>113</ID>
+                        <ID>117</ID>
+                      </CHILDREN>
+                    </IN>
+                      <IN>
+                        <PARENT>118</PARENT>
+                        <UNID>112</UNID>
+                        <SYMB>VNAME</SYMB>
+                        <CHILDREN>
+                          <ID>111</ID>
+                        </CHILDREN>
+                      </IN>
+                        <LEAF>
+                          <PARENT>112</PARENT>
+                          <UNID>111</UNID>
+                          <TERMINAL>
+                            <TOKEN>V_novak</TOKEN>
+                          </TERMINAL>
+                        </LEAF>
+                      <LEAF>
+                        <PARENT>118</PARENT>
+                        <UNID>113</UNID>
+                        <TERMINAL>
+                          <TOKEN>=</TOKEN>
+                        </TERMINAL>
+                      </LEAF>
+                      <IN>
+                        <PARENT>118</PARENT>
+                        <UNID>117</UNID>
+                        <SYMB>TERM</SYMB>
+                        <CHILDREN>
+                          <ID>116</ID>
+                        </CHILDREN>
+                      </IN>
+                        <IN>
+                          <PARENT>117</PARENT>
+                          <UNID>116</UNID>
+                          <SYMB>ATOMIC</SYMB>
+                          <CHILDREN>
+                            <ID>115</ID>
+                          </CHILDREN>
+                        </IN>
+                          <IN>
+                            <PARENT>116</PARENT>
+                            <UNID>115</UNID>
+                            <SYMB>CONST</SYMB>
+                            <CHILDREN>
+                              <ID>114</ID>
+                            </CHILDREN>
+                          </IN>
+                            <LEAF>
+                              <PARENT>115</PARENT>
+                              <UNID>114</UNID>
+                              <TERMINAL>
+                                <TOKEN>5</TOKEN>
+                              </TERMINAL>
+                            </LEAF>
+                  <LEAF>
+                    <PARENT>122</PARENT>
+                    <UNID>120</UNID>
+                    <TERMINAL>
+                      <TOKEN>;</TOKEN>
+                    </TERMINAL>
+                  </LEAF>
+                  <LEAF>
+                    <PARENT>122</PARENT>
+                    <UNID>121</UNID>
+                    <TERMINAL>
+                      <TOKEN>null</TOKEN>
+                    </TERMINAL>
+                  </LEAF>
             <LEAF>
-              <PARENT>115</PARENT>
-              <UNID>114</UNID>
+              <PARENT>126</PARENT>
+              <UNID>125</UNID>
               <TERMINAL>
                 <TOKEN>end</TOKEN>
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>121</PARENT>
-            <UNID>117</UNID>
+            <PARENT>132</PARENT>
+            <UNID>128</UNID>
             <SYMB>EPILOG</SYMB>
             <CHILDREN>
-              <ID>116</ID>
+              <ID>127</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>117</PARENT>
-              <UNID>116</UNID>
+              <PARENT>128</PARENT>
+              <UNID>127</UNID>
               <TERMINAL>
                 <TOKEN>}</TOKEN>
               </TERMINAL>
             </LEAF>
           <IN>
-            <PARENT>121</PARENT>
-            <UNID>119</UNID>
+            <PARENT>132</PARENT>
+            <UNID>130</UNID>
             <SYMB>SUBFUNCS</SYMB>
             <CHILDREN>
-              <ID>118</ID>
+              <ID>129</ID>
             </CHILDREN>
           </IN>
             <LEAF>
-              <PARENT>119</PARENT>
-              <UNID>118</UNID>
+              <PARENT>130</PARENT>
+              <UNID>129</UNID>
               <TERMINAL>
                 <TOKEN>null</TOKEN>
               </TERMINAL>
             </LEAF>
           <LEAF>
-            <PARENT>121</PARENT>
-            <UNID>120</UNID>
+            <PARENT>132</PARENT>
+            <UNID>131</UNID>
             <TERMINAL>
               <TOKEN>end</TOKEN>
             </TERMINAL>
           </LEAF>
       <LEAF>
-        <PARENT>124</PARENT>
-        <UNID>123</UNID>
+        <PARENT>135</PARENT>
+        <UNID>134</UNID>
         <TERMINAL>
           <TOKEN>null</TOKEN>
         </TERMINAL>
