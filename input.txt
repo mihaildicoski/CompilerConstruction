@@ -1,14 +1,7 @@
-main num V_x, text V_y, num V_z begin 
-    V_x < input 
-    if eq(V_x, 10) then 
-        print V_x 
-    else 
-        print "Value" 
-    end
-    F_addthree(V_x, V_y, V_z)
-end 
-
-void F_addthree(num V_a, num V_b, num V_c) begin 
-    V_c = add(V_a, 3)
-    print V_c 
-end
+main num V_x, num V_b, text V_message begin V_a = 64; end num F_add(V_x, V_y, V_z) {
+     num  V_a1,  num  V_a2,  num  V_a3,
+     begin
+          V_a2 =  F_sub(V_x,V_y,V_z);
+     end
+ }
+ end 

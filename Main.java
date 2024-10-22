@@ -8,13 +8,13 @@ public class Main {
     public static void main(String[] args) {
         try {
             String code = ""; 
-            String filepath = "input3.txt"; 
+            String filepath = "input4.txt"; 
             StringBuilder sb = new StringBuilder(); 
 
             try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
                 String line; 
                 while ((line = reader.readLine()) != null) {
-                    sb.append(line);  
+                    sb.append(line).append(" ");  
                 }
                 code = sb.toString(); 
             } 
@@ -40,7 +40,7 @@ public class Main {
                 e.printStackTrace();
             }
 
-            ScopeAnalyser scope = new ScopeAnalyser(root); 
+            ScopeAnalyser2 scope = new ScopeAnalyser2(root); 
             Node updatedRoot = scope.analyse(root);
             String xmlOutput2 = astToXml.generateSyntaxTreeXml(updatedRoot);
             try (FileWriter writer = new FileWriter("updatedAST.txt")) {
@@ -48,6 +48,13 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
+            //IR
+            IntermediateTranslator ir = new IntermediateTranslator(updatedRoot); 
+            String intermediateCode = ir.translate(); 
+            System.out.println("=================INTERMEDIATE CODE=================");
+            System.out.println(intermediateCode);
 
 
         } catch (IOException e) {
