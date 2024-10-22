@@ -57,6 +57,8 @@ public class ScopeAnalyser2 {
                     else{
                         String newName = "f" + (fCounter++); 
                         scopeStack.currentScope().addSymbol(functionName, newName, functionType, functionId);
+                        //maybe traverse header before you enter a new scope
+                        
                         scopeStack.enterScope();
                         for(Node child: node.getChildren()){
                             traverse(child);
@@ -68,6 +70,8 @@ public class ScopeAnalyser2 {
                 break; 
 
             case "HEADER": 
+                //possibly collect all vnames and then enter scope then add 
+                //you will exit out of the scope onc children are traversed
                 String vname1 = node.getChildren().get(3).getChildren().get(0).getValue();
                 int id1 = node.getChildren().get(3).getChildren().get(0).getId();
                 String vname2 = node.getChildren().get(5).getChildren().get(0).getValue();
@@ -139,6 +143,7 @@ public class ScopeAnalyser2 {
 
             case "BRANCH": 
                 //make sure to have scope inside both algo parts
+
                 break; 
 
             case "GLOBVARS": 
