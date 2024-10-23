@@ -8,13 +8,13 @@ public class Main {
     public static void main(String[] args) {
         try {
             String code = ""; 
-            String filepath = "input3.txt"; 
+            String filepath = "input4.txt"; 
             StringBuilder sb = new StringBuilder(); 
 
             try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
                 String line; 
                 while ((line = reader.readLine()) != null) {
-                    sb.append(line);  
+                    sb.append(line).append(" ");  
                 }
                 code = sb.toString(); 
             } 
@@ -40,14 +40,23 @@ public class Main {
                 e.printStackTrace();
             }
 
-            ScopeAnalyser scope = new ScopeAnalyser(root); 
-            Node updatedRoot = scope.analyse(root);
-            String xmlOutput2 = astToXml.generateSyntaxTreeXml(updatedRoot);
-            try (FileWriter writer = new FileWriter("updatedAST.txt")) {
-                writer.write(xmlOutput2);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ScopeAnalyser2 scope = new ScopeAnalyser2(root); 
+            SymbolTable tableRoot = scope.analyse(root);
+            scope.printTables(tableRoot); 
+            // String xmlOutput2 = astToXml.generateSyntaxTreeXml(updatedRoot);
+            // try (FileWriter writer = new FileWriter("updatedAST.txt")) {
+            //     writer.write(xmlOutput2);
+            // } catch (IOException e) {
+            //     e.printStackTrace();
+            // }
+
+
+            //IR
+            //tree names need to get renamed directly (make another tree)
+            IntermediateTranslator ir = new IntermediateTranslator(root); 
+            String intermediateCode = ir.translate(); 
+            System.out.println("=================INTERMEDIATE CODE=================");
+            System.out.println(intermediateCode);
 
 
         } catch (IOException e) {

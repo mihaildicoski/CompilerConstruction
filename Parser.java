@@ -162,7 +162,7 @@ public class Parser {
         //technically first column will always give the state number
         int columnindex = getColumnIndex(token); 
         if (columnindex == -1) {
-            throw new IllegalArgumentException("Token was not found in parse table: " + token.getType());
+            throw new IllegalArgumentException("Token was not found in parse table: " + token.getType() + " value: "+ token.getValue());
         }
         //this is because the states only start from row 2 
         int adjustedState = state + 2; 
@@ -1095,7 +1095,7 @@ public class Parser {
                 break;
 
             case 57:
-                parentNode = new Node("LOCALVARS", nodeId++); 
+                parentNode = new Node("LOCVARS", nodeId++); 
                 for(int i  = 0; i<9; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
@@ -1106,8 +1106,8 @@ public class Parser {
                     parentNode.addChild(child);  
                 }
                 astStack.push(parentNode);
-                symbolStack.push("LOCALVARS");
-                goTo("LOCALVARS");
+                symbolStack.push("LOCVARS");
+                goTo("LOCVARS");
                 break;
 
             case 58:
