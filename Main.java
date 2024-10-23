@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             String code = ""; 
-            String filepath = "input4.txt"; 
+            String filepath = "main1.txt"; 
             StringBuilder sb = new StringBuilder(); 
 
             try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
