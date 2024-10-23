@@ -53,7 +53,7 @@ public class Main {
 
             //IR
             //tree names need to get renamed directly (make another tree)
-            IntermediateTranslator ir = new IntermediateTranslator(root); 
+            IntermediateTranslator ir = new IntermediateTranslator(root, tableRoot); 
             String intermediateCode = ir.translate(); 
             System.out.println("=================INTERMEDIATE CODE=================");
             System.out.println(intermediateCode);
