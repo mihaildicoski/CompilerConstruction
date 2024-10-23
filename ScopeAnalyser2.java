@@ -72,8 +72,7 @@ public class ScopeAnalyser2 {
                     SymbolInfo existing = scopeStack.currentScope().lookup(functionName); 
                     if(existing != null){
                         //then we have a function in the same scope with same name throw error
-                        System.out.println("There is already a function declared with name: " + functionName+ " within the same scope.");
-                        return; 
+                        throw new IllegalArgumentException("There is already a function declared with name "+ functionName+ " within the same scope. Invalid."); 
                     }
                     else{
                         String newName = "f" + (fCounter++); 
@@ -103,6 +102,11 @@ public class ScopeAnalyser2 {
                 int id2 = node.getChildren().get(5).getChildren().get(0).getId(); 
                 String vname3 = node.getChildren().get(7).getChildren().get(0).getValue();
                 int id3 = node.getChildren().get(7).getChildren().get(0).getId(); 
+
+                if(vname1.equals(vname2) || vname1.equals(vname3) || vname2.equals(vname3)){
+                    throw new IllegalArgumentException("Vars passed into function declaration "+ functionName+" contain duplicate variable names. Invalid.");
+                }
+
                 String newName1 = "v"+(vCounter++);
                 String newName2 = "v"+(vCounter++);
                 String newName3 = "v"+(vCounter++);
@@ -150,16 +154,16 @@ public class ScopeAnalyser2 {
                 int prvi_id = localvars.getChildren().get(1).getChildren().get(0).getId(); 
                 int drugi_id = localvars.getChildren().get(4).getChildren().get(0).getId(); 
                 int treci_id = localvars.getChildren().get(7).getChildren().get(0).getId();
+                
+                if(prvi.equals(drugi) || prvi.equals(treci) || drugi.equals(treci)){
+                    throw new IllegalArgumentException("Localvars contain duplicate variable names. Invalid.");
+                }
 
                 String noviName1 = "v"+(vCounter++);
                 String noviName2 = "v"+(vCounter++);
                 String noviName3 = "v"+(vCounter++);
 
                 //check if the three vnames are different
-                if(prvi.equals(drugi) || prvi.equals(treci) || drugi.equals(treci)){
-                    System.out.println("Localvars contain duplicate variable names. Invalid");
-                    return; 
-                }
 
                 scopeStack.currentScope().addSymbol(prvi, noviName1, type1, prvi_id);
                 scopeStack.currentScope().addSymbol(drugi, noviName2, type2, drugi_id);
@@ -175,26 +179,26 @@ public class ScopeAnalyser2 {
 
             case "VNAME": 
                 //make sure to add to symbol table 
-                String origName = node.getChildren().get(0).getValue(); 
-                SymbolInfo existingvname = scopeStack.currentScope().lookup(origName);
-                if(existingvname != null){
-                    node.getChildren().get(0).setValue(existingvname.uniqueName);
-                } 
-                else{
-                    //only exit scope if you are not in global 
-                   scopeStack.exitScope(); 
-                   if(scopeStack.currentScope()!=null){
+                // String origName = node.getChildren().get(0).getValue(); 
+                // SymbolInfo existingvname = scopeStack.currentScope().lookup(origName);
+                // if(existingvname != null){
+                //     node.getChildren().get(0).setValue(existingvname.uniqueName);
+                // } 
+                // else{
+                //     //only exit scope if you are not in global 
+                //    scopeStack.exitScope(); 
+                //    if(scopeStack.currentScope()!=null){
 
-                       SymbolInfo existingParent = scopeStack.currentScope().lookup(origName); 
-                       if(existingParent!=null){
-                         node.getChildren().get(0).setValue(existingParent.uniqueName);
-                       }
+                //        SymbolInfo existingParent = scopeStack.currentScope().lookup(origName); 
+                //        if(existingParent!=null){
+                //          node.getChildren().get(0).setValue(existingParent.uniqueName);
+                //        }
 
-                   }
-                   else{
-                    //you were in global scope and you could not find vname inside the symbol table
-                   }
-                }
+                //    }
+                //    else{
+                //     //you were in global scope and you could not find vname inside the symbol table
+                //    }
+                // }
                 
                 break; 
 
@@ -213,8 +217,7 @@ public class ScopeAnalyser2 {
                     SymbolInfo existingvar = scopeStack.currentScope().lookup(originalName);
                     if(existingvar!=null){
                         //declared beforehand throw an error
-                        System.out.println("Globvar with name "+ originalName+ " already declared.");
-                        return; 
+                        throw new IllegalArgumentException("Globvar with name "+originalName+" already declared. Cannot do double declarations. Invalid."); 
                     }
                     else{
                         String uniqueName = "v" + (vCounter++); 
@@ -260,8 +263,7 @@ public class ScopeAnalyser2 {
                                 parent = parent.getParent(); 
                             }
                             if(!found){
-                                System.out.println("Parameter "+atomName1+" that was passed into function was invalid.");
-                                return; 
+                                throw new IllegalArgumentException("Parameter "+atomName1+" that was passed into function was invalid.");
                             }
                         }
                         
@@ -287,8 +289,7 @@ public class ScopeAnalyser2 {
                                 parent = parent.getParent(); 
                             }
                             if(!found){
-                                System.out.println("Parameter "+atomName2+" that was passed into function was invalid.");
-                                return; 
+                                throw new IllegalArgumentException("Parameter "+atomName2+" that was passed into function was invalid.");
                             }
                         }
                     }
@@ -312,8 +313,9 @@ public class ScopeAnalyser2 {
                                 parent = parent.getParent(); 
                             }
                             if(!found){
-                                System.out.println("Parameter "+atomName3+" that was passed into function was invalid.");
-                                return; 
+                                throw new IllegalArgumentException("Parameter "+atomName3+" that was passed into function was invalid.");
+                                //System.out.println("Parameter "+atomName3+" that was passed into function was invalid.");
+                               // return; 
                             }
                         }
                     }
@@ -326,7 +328,7 @@ public class ScopeAnalyser2 {
                 }
                 else{
                     //function was not declared
-                    System.out.println("Function "+ fname+" was not declared. Invalid call. ");
+                    throw new IllegalArgumentException("Function "+fname+" was not declared. Invalid call.");
 
                 }
                     
@@ -356,8 +358,7 @@ public class ScopeAnalyser2 {
                             parent = parent.getParent(); 
                         }
                         if(!found){
-                            System.out.println("Variable "+atomName+" is not declared.");
-                            return; 
+                            throw new IllegalArgumentException("Variable " + atomName+ " is not declared. Invalid use."); 
                         }
                     }
 
@@ -367,7 +368,7 @@ public class ScopeAnalyser2 {
 
 
             case "ASSIGN": 
-                //check that the vname was declared beforehand 
+                
                 Node vname = node.getChildren().get(0); 
                 String actualVname = vname.getChildren().get(0).getValue(); 
                 SymbolInfo existing = scopeStack.currentScope().lookup(actualVname); 
@@ -386,8 +387,7 @@ public class ScopeAnalyser2 {
                         parent = parent.getParent(); 
                     }
                     if(!found){
-                        System.out.println("Variable "+actualVname+" is not declared.");
-                        return; 
+                        throw new IllegalArgumentException("Variable " + actualVname+ " is not declared. Invalid use."); 
                     }
                 }
                 break; 
@@ -407,21 +407,6 @@ public class ScopeAnalyser2 {
 
 
 
-    // private void traverseCalls(Node node){
-
-    //     String type = node.getType(); 
-    //     switch(node.getType()){
-    //         case "CALL": 
-                
-
-
-    //         default: 
-    //             for(Node child: node.getChildren()){
-    //                 traverseCalls(child);
-    //             }
-    //     }
-
-    // }
 
 
 
