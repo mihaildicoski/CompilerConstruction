@@ -83,13 +83,21 @@ public class ScopeAnalyser2 {
                         scopeStack.enterScope();
                         scopeStack.currentScope().setName(functionName);
                         //scope is entered on the decl
-                        for(Node child: node.getChildren()){
-                            traverse(child);
-                        }
+                        //scope should be exited after declaration
+                        Node declaration = node.getChildren().get(0); 
+                        Node funcs = node.getChildren().get(1);
+                        traverse(declaration); 
+
+                        // for(Node child: node.getChildren()){
+                        //     traverse(child);
+                        // }
                         scopeStack.exitScope();
+                        traverse(funcs);
                     }
                     
                 }
+                //*********This was the change for coming out of scope at the end */
+                // scopeStack.exitScope();
                 break; 
 
             case "HEADER": 
