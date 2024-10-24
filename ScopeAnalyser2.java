@@ -463,7 +463,7 @@ class ScopeStack{
 }
 
 class SymbolTable{
-    private Map<String, SymbolInfo> table = new HashMap<>();
+    public Map<String, SymbolInfo> table = new HashMap<>();
     private String tableName; 
     private List<SymbolTable> children = new ArrayList<>();
     private SymbolTable parent; 
@@ -493,6 +493,10 @@ class SymbolTable{
 
     public void setName(String name){
         this.tableName = name; 
+    }
+
+    public String getName(){
+        return this.tableName; 
     }
 
     public void addChild(SymbolTable n){

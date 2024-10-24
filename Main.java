@@ -2,13 +2,14 @@ import java.util.List;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.io.BufferedReader;
 
 public class Main {
     public static void main(String[] args) {
         try {
             String code = ""; 
-            String filepath = "input4.txt"; 
+            String filepath = "bigInput.txt"; 
             StringBuilder sb = new StringBuilder(); 
 
             try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
@@ -50,6 +51,16 @@ public class Main {
             //     e.printStackTrace();
             // }
 
+
+            System.out.println("==========================Typechecker===========================");
+            TypeChecker typeChecker = new TypeChecker(root, tableRoot);
+            boolean checkPass =typeChecker.checkTypes();
+
+            if(checkPass){
+                System.out.println("Type checking passed");
+            }else{
+                System.out.println("Type checking failed");
+            }
 
             //IR
             //tree names need to get renamed directly (make another tree)

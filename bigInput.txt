@@ -1,0 +1,84 @@
+main
+num V_x, text V_msg, num V_y, num V_res, 
+begin
+    V_x = 4;
+    V_y = 20.076;
+    V_msg = "Hallot";
+    V_res = F_compute(5, V_x, V_y);
+    V_res < input;
+
+    if and(grt(V_x, 40.1), eq(V_x, V_y)) then
+        begin
+            print V_msg;
+            skip;
+            halt;
+        end
+    else
+        begin
+            if eq(V_x, V_y) then
+                begin
+                    V_x = sqrt(49);
+                    V_y = add(2, 20.1);
+                    V_x = mul(V_x, V_y);
+                    V_y = div(V_x, V_y);
+                    V_y = sub(V_x, V_y);
+                end
+            else
+                begin
+    
+                end;
+        end;
+    
+end
+num F_compute(V_a, V_b, V_c) {
+    num V_temp1, text V_temp2, num V_temp3,
+    begin
+        V_temp1 = add(V_a, V_b);
+        F_another(V_a, V_b, V_c);
+        if grt(V_temp1, V_c) then
+            begin
+                return V_temp1;
+            end
+        else
+            begin
+                V_x = F_compute(1, 2, V_y);
+            end;
+    end
+}
+void F_another(V_d, V_e, V_f) {
+    num V_sum, num V_product, text V_msg,
+    begin
+        V_sum = add(V_d, V_e);
+        V_product = mul(V_d, V_f);
+        if eq(V_sum, 10) then
+            begin
+                V_msg = "Sumisten";
+                print V_msg;
+            end
+        else
+            begin
+                V_msg = "Sumnot";
+                print V_msg;
+            end;
+    end
+}
+end
+end
+void F_another(V_d, V_e, V_f) {
+    num V_sum, num V_product, text V_msg,
+    begin
+        V_sum = add(V_d, V_e);
+        V_product = mul(V_d, V_f);
+        if eq(V_sum, 10) then
+            begin
+                V_msg = "Sumisten";
+                print V_msg;
+            end
+        else
+            begin
+                V_msg = "Sumnot";
+                print V_msg;
+            end;
+    end
+}
+end
