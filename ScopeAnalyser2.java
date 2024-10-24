@@ -170,10 +170,15 @@ public class ScopeAnalyser2 {
                 scopeStack.currentScope().addSymbol(treci, noviName3, type3, treci_id);
 
                 //finished localvars 
-                List<Node> childrenfrom3 = node.getChildren().subList(2, 5);
-                for(Node child: childrenfrom3){
-                    traverse(child);
-                }
+                //List<Node> childrenfrom3 = node.getChildren().subList(2, 5);
+                Node algo2 = node.getChildren().get(2); 
+                Node epilog = node.getChildren().get(3); 
+                Node subfuncs = node.getChildren().get(4);
+                Node end = node.getChildren().get(5);  
+                traverse(subfuncs);
+                traverse(algo2); 
+                traverse(epilog);
+                traverse(end); 
 
                 break; 
 
@@ -328,7 +333,7 @@ public class ScopeAnalyser2 {
                 }
                 else{
                     //function was not declared
-                    throw new IllegalArgumentException("Function "+fname+" was not declared. Invalid call.");
+                    throw new IllegalArgumentException("Function "+funcName+" was not declared. Invalid call.");
 
                 }
                     
