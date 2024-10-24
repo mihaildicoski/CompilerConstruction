@@ -216,10 +216,10 @@ public class ScopeAnalyser2 {
                 break; 
 
 
-            case "BRANCH": 
-                //make sure to have scope inside both algo parts
+            // case "BRANCH": 
+            //     //make sure to have scope inside both algo parts
 
-                break; 
+            //     break; 
 
             case "GLOBVARS": 
                 if(node.getChildren().size()>0){
@@ -402,6 +402,19 @@ public class ScopeAnalyser2 {
                     if(!found){
                         throw new IllegalArgumentException("Variable " + actualVname+ " is not declared. Invalid use."); 
                     }
+                }
+                break; 
+
+            case "COMMAND": 
+                if(scopeStack.currentScope().getName().equals("main")){
+
+                    if(node.getChildren().get(0).getType().equals("KEYWORD") && node.getChildren().get(0).getValue().equals("return")){
+                        throw new IllegalArgumentException("Invalid. Not allowed to have return in main scope."); 
+                    }
+
+                }
+                for(Node child: node.getChildren()){
+                    traverse(child); 
                 }
                 break; 
 

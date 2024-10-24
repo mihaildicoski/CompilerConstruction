@@ -6,12 +6,14 @@ begin
     V_msg = "Hallot";
     V_res = F_compute(5, V_x, V_y);
     V_res <input;
-
+   
     if and(grt(V_x, 40.1), eq(V_x, V_y)) then
         begin
+           
             print V_msg;
             skip;
             halt;
+             
         end
     else
         begin
