@@ -17,8 +17,8 @@ public class TypeChecker {
 
         Node currentNode = startNode;
 
-        // return checkTypes(currentNode);
-        return true;
+        return checkTypes(currentNode);
+        // return true;
     }
 
     boolean checkTypes(Node currentNode) {

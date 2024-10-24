@@ -50,12 +50,25 @@ public class Main {
             //     e.printStackTrace();
             // }
 
+             
+            System.out.println("=============================Typechecker=============================");
+            TypeChecker typeChecker = new TypeChecker(root, tableRoot);
+            boolean checkPass =typeChecker.checkTypes();
+
+            if(checkPass){
+                System.out.println("Type checking passed");
+            }else{
+                //System.out.println("Type checking failed");
+                throw new IllegalArgumentException("Type checker returned false");
+            }
+
+
 
             //IR
             //tree names need to get renamed directly (make another tree)
             IntermediateTranslator ir = new IntermediateTranslator(root, tableRoot); 
             String intermediateCode = ir.translate(); 
-            System.out.println("=================INTERMEDIATE CODE=================");
+            System.out.println("==========================INTERMEDIATE CODE==========================");
             System.out.println(intermediateCode);
 
 
