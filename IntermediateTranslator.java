@@ -220,7 +220,7 @@ public class IntermediateTranslator {
                 }
                 else{
                     miki.append("INPUT ");
-                    traverse(node.getChildren().get(2)); 
+                    traverse(node.getChildren().get(0)); 
                 }
                 break; 
 
