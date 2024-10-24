@@ -83,13 +83,21 @@ public class ScopeAnalyser2 {
                         scopeStack.enterScope();
                         scopeStack.currentScope().setName(functionName);
                         //scope is entered on the decl
-                        for(Node child: node.getChildren()){
-                            traverse(child);
-                        }
+                        //scope should be exited after declaration
+                        Node declaration = node.getChildren().get(0); 
+                        Node funcs = node.getChildren().get(1);
+                        traverse(declaration); 
+
+                        // for(Node child: node.getChildren()){
+                        //     traverse(child);
+                        // }
                         scopeStack.exitScope();
+                        traverse(funcs);
                     }
                     
                 }
+                //*********This was the change for coming out of scope at the end */
+                // scopeStack.exitScope();
                 break; 
 
             case "HEADER": 
@@ -170,10 +178,15 @@ public class ScopeAnalyser2 {
                 scopeStack.currentScope().addSymbol(treci, noviName3, type3, treci_id);
 
                 //finished localvars 
-                List<Node> childrenfrom3 = node.getChildren().subList(2, 5);
-                for(Node child: childrenfrom3){
-                    traverse(child);
-                }
+                //List<Node> childrenfrom3 = node.getChildren().subList(2, 5);
+                Node algo2 = node.getChildren().get(2); 
+                Node epilog = node.getChildren().get(3); 
+                Node subfuncs = node.getChildren().get(4);
+                Node end = node.getChildren().get(5);  
+                traverse(subfuncs);
+                traverse(algo2); 
+                traverse(epilog);
+                traverse(end); 
 
                 break; 
 
@@ -328,7 +341,7 @@ public class ScopeAnalyser2 {
                 }
                 else{
                     //function was not declared
-                    throw new IllegalArgumentException("Function "+fname+" was not declared. Invalid call.");
+                    throw new IllegalArgumentException("Function "+funcName+" was not declared. Invalid call.");
 
                 }
                     
