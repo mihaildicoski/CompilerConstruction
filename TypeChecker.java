@@ -24,6 +24,7 @@ public class TypeChecker {
     boolean checkTypes(Node currentNode) {
 
         // testing start node and children VALUES
+        String currType = currentNode.getType(); 
         switch (currentNode.getType()) {
             case "PROG":
 
@@ -78,15 +79,16 @@ public class TypeChecker {
 
             case "COMMAND":
                 List<Node> childrenCommand = currentNode.getChildren();
-                if (childrenCommand.get(0).getValue().equals("halt")) {
-                    return true;
-                } else if (childrenCommand.get(0).getValue().equals("skip")) {
-                    return true;
-                } else {
-                    // COMMAND -> print ATOMIC
-                    if (currentNode.getChildren().get(0).getValue().equals("print")) {
+                if(childrenCommand.get(0).getType().equals("KEYWORD")){
+                    if (childrenCommand.get(0).getValue().equals("halt")) {
+                        return true;
+                    } else if (childrenCommand.get(0).getValue().equals("skip")) {
+                        return true;
+                    }  
+                    else if (currentNode.getChildren().get(0).getValue().equals("print")) {
 
                         String typeAtom = typeOfATOMIC(currentNode.getChildren().get(1));
+                        //System.out.println(typeAtom + "....this is after typeAtom");
                         if (typeAtom.equals("n")) {
                             return true;
                         } else if (typeAtom.equals("t")) {
@@ -95,15 +97,7 @@ public class TypeChecker {
                             return false;
                         }
                     }
-                    // COMMAND -> ASSIGN
-                    if (currentNode.getChildren().get(0).getType().equals("ASSIGN")) {
-                        return checkTypes(currentNode.getChildren().get(0));
-                    } else if (currentNode.getChildren().get(0).getType().equals("BRANCH")) {
-                        return checkTypes(currentNode.getChildren().get(0));
-                    }
-                    // add stuff for case COMMAND -> return ATOMIC
-                    // COMMMAND -> return ATOMIC
-                    if (currentNode.getChildren().get(0).getValue().equals("return")) {
+                    else if (currentNode.getChildren().get(0).getValue().equals("return")) {
                         String typeAtom = typeOfATOMIC(currentNode.getChildren().get(1));
                         // find node in symbol table
 
@@ -119,6 +113,23 @@ public class TypeChecker {
                             return false;
                         }
                     }
+                }
+
+                else {
+                    // COMMAND -> print ATOMIC
+                    
+                    // COMMAND -> ASSIGN
+                    
+                    
+                    if (currentNode.getChildren().get(0).getType().equals("ASSIGN")) {
+                        return checkTypes(currentNode.getChildren().get(0));
+                    } else {
+                        return checkTypes(currentNode.getChildren().get(0));
+                    }
+                       
+                    // add stuff for case COMMAND -> return ATOMIC
+                    // COMMMAND -> return ATOMIC
+                    
 
                     /// add functionallity for COMMAND -> CALL
                     // add fuinctionallity for COMMAND -> BRANCH
@@ -196,7 +207,7 @@ public class TypeChecker {
                 Node funcchild = fname.getChildren().get(0);
                 String funcname = funcchild.getValue();
                 currentFunctionName = funcname; //updating the current function name
-
+                //System.out.println(currentFunctionName);
                 //normal processing
 
                 Node vname1 = childrenHeader.get(3);
@@ -259,10 +270,11 @@ public class TypeChecker {
     String typeOfVname(Node node) {
 
         SymbolTable currTable = findSymbolTable(currentFunctionName, symbolTable);
+        //System.out.println(currentFunctionName);
         Node children = node.getChildren().get(0);
 
         SymbolInfo si = currTable.lookup(children.getValue());
-
+        //System.out.println("Table retrieved successfully");
         String type = si.type;
 
         if (type.equals("num")) {
@@ -338,16 +350,25 @@ public class TypeChecker {
 
         Node child = node.getChildren().get(0);
         String funcName = child.getValue();
-
-        SymbolTable currTable = findSymbolTable(currentFunctionName, symbolTable);
+        //currentFunctionName = funcName; 
+        SymbolTable currTable = findSymbolTable(funcName, symbolTable);
+        // System.out.println("Current function name was : "+currentFunctionName);
+        // System.out.println("Currtable name recieved was: "+ currTable.getName());
+        // System.out.println("test....");
+        // System.out.println(findSymbolTable("F_another", symbolTable).getName());
+        
         currTable = currTable.getParent();
+        // if(currTable == null){
+        //     return "v"; 
+        // }
+            
         SymbolInfo si = currTable.lookup(funcName);
         String type = si.type;
 
         if (type.equals("num")) {
             return "n";
         } else {
-            return "t";
+            return "v";
         }
 
     }
