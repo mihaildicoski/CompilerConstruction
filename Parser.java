@@ -529,7 +529,7 @@ public class Parser {
 
             case 21:
                 parentNode = new Node("ASSIGN", nodeId++); 
-                for(int i  = 0; i<3; i++){
+                for(int i  = 0; i<2; i++){
                     symbolStack.pop(); 
                     stateStack.pop(); 
                     children.add(astStack.pop());

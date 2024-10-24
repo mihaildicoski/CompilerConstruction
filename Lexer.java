@@ -32,7 +32,26 @@ public class Lexer {
         }
         Token eofToken = new Token(TokenType.EOF, "$"); 
         tokens.add(eofToken); 
-        return tokens; 
+        return combineTokens(tokens); 
+    }
+
+    private List<Token> combineTokens(List<Token> tokens) {
+        List<Token> combinedTokens = new ArrayList<>();
+
+        for (int i = 0; i < tokens.size(); i++) {
+            Token currToken = tokens.get(i);
+
+            if (currToken.getType() == TokenType.OPERATOR && currToken.getValue().equals("<") &&
+                i + 1 < tokens.size() && tokens.get(i + 1).getType() == TokenType.KEYWORD && tokens.get(i + 1).getValue().equals("input")) {
+                Token combinedToken = new Token(TokenType.KEYWORD, "<input");
+                combinedTokens.add(combinedToken);
+                i++; 
+            } else {
+                combinedTokens.add(currToken);
+            }
+        }
+
+        return combinedTokens;
     }
 
 
@@ -56,7 +75,7 @@ public class Lexer {
             "\"[A-Z][a-z]{0,7}\"", // Text literals (Token-Class T)
             "[+\\-*/=<>!]", // Operators
             "[.,;(){}]", // Punctuation
-            "\\b(main|num|text|begin|end|skip|halt|print|input|if|then|else|void|not|sqrt|or|and|eq|grt|add|sub|mul|div)\\b", // Keywords
+            "\\b(main|num|text|begin|end|skip|halt|print|input|if|then|else|void|not|sqrt|or|and|eq|grt|add|sub|mul|div|return)\\b", // Keywords
         }; 
 
         TokenType[] tokenTypes = {
