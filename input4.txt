@@ -1,4 +1,4 @@
-main
+main 
 num V_x, text V_msg, num V_y, num V_res, 
 begin
     V_x = 4;

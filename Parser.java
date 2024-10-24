@@ -169,13 +169,13 @@ public class Parser {
         int adjustedColIndex = columnindex; //because they start counting from 1
         // System.out.println("This is the state that they put: "+ adjustedState);
         // System.out.println("This is the colIndex that they put: "+ adjustedColIndex);
-        System.out.println("This is the state stack: ");
-        System.out.println(stateStack.toString());
-        System.out.println("This is the symbol stack:");
-        System.out.println(symbolStack.toString());
-        System.out.println("This is the AST stack: ");
-        System.out.println(astStack.toString());
-        System.out.println("This is the action that was found: " + parseTable[adjustedState][adjustedColIndex]);
+        // System.out.println("This is the state stack: ");
+        // System.out.println(stateStack.toString());
+        // System.out.println("This is the symbol stack:");
+        // System.out.println(symbolStack.toString());
+        // System.out.println("This is the AST stack: ");
+        // System.out.println(astStack.toString());
+        // System.out.println("This is the action that was found: " + parseTable[adjustedState][adjustedColIndex]);
         return parseTable[adjustedState][adjustedColIndex]; 
     }
 

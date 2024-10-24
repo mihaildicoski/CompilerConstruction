@@ -3,28 +3,57 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.util.Scanner; 
 
 public class Main {
     public static void main(String[] args) {
         try {
+            Scanner scanner = new Scanner(System.in); 
             String code = ""; 
-            String filepath = "input4.txt"; 
+            // String filepath = "input4.txt"; 
             StringBuilder sb = new StringBuilder(); 
 
-            try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
-                String line; 
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line).append(" ");  
+            System.out.println("Please press 1 for text file input: ");
+            int option = scanner.nextInt(); 
+            scanner.nextLine(); 
+            if(option==1){
+                System.out.println("Enter the file name (must be in the same folder e.g 'input4.txt'): ");
+                String filepath = scanner.nextLine(); 
+
+                try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line).append(" "); 
+                    }
+                    code = sb.toString();
+                } catch (IOException e) {
+                    System.out.println("Error reading file: " + e.getMessage());
                 }
-                code = sb.toString(); 
-            } 
+            }
+            // else if(option ==2){
+            //     System.out.println("Please enter in the source code for your RecSPL program: ");
+            //     String input = scanner.nextLine(); 
+            //     code = input.replace("\n", " "); 
+            // }
+            else{
+                System.out.println("Invalid option.");
+                return; 
+            }
+
+            // try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+            //     String line; 
+            //     while ((line = reader.readLine()) != null) {
+            //         sb.append(line).append(" ");  
+            //     }
+            //     code = sb.toString(); 
+            // } 
 
            
             Lexer lexer = new Lexer(code);
             List<Token> tokens = lexer.lex();
 
-            System.out.println("The string input was: ");
-            System.out.println(code);
+            System.out.println("Tokens lexed: ");
+            //System.out.println(code);
             for (Token token : tokens) {
                 System.out.println(token);
             }
